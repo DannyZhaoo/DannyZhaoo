@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-06-02T10:26:00.259Z</updated>
+  <updated>2017-06-02T10:45:41.822Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>配置客户端git</title>
+    <link href="http:/dannyzhaoo.github.io/2017/06/02/%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AFgit/"/>
+    <id>http:/dannyzhaoo.github.io/2017/06/02/配置客户端git/</id>
+    <published>2017-06-02T10:30:21.000Z</published>
+    <updated>2017-06-02T10:45:41.822Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="配置客户端git"><a href="#配置客户端git" class="headerlink" title="配置客户端git"></a>配置客户端git</h1><p>配置客户端git，让git可以push和pull</p>
+<h3 id="1-设置名字和邮箱地址"><a href="#1-设置名字和邮箱地址" class="headerlink" title="1 设置名字和邮箱地址"></a>1 设置名字和邮箱地址</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">"John Doe"</span></span></div><div class="line"><span class="meta">$</span><span class="bash"> git config --global user.email johndoe@example.com</span></div></pre></td></tr></table></figure>
+<h3 id="2-生成一个新的ssh秘钥"><a href="#2-生成一个新的ssh秘钥" class="headerlink" title="2 生成一个新的ssh秘钥"></a>2 生成一个新的ssh秘钥</h3><p>打开 Git Bash，输入如下命令，然后连续按三个回车即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure>
+<h3 id="3-将生成的公钥复制到GitHub"><a href="#3-将生成的公钥复制到GitHub" class="headerlink" title="3 将生成的公钥复制到GitHub"></a>3 将生成的公钥复制到GitHub</h3><h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4 测试"></a>4 测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
+<p>输入yes后回车，如果提示中的用户名是你的，说明设置成功。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;配置客户端git&quot;&gt;&lt;a href=&quot;#配置客户端git&quot; class=&quot;headerlink&quot; title=&quot;配置客户端git&quot;&gt;&lt;/a&gt;配置客户端git&lt;/h1&gt;&lt;p&gt;配置客户端git，让git可以push和pull&lt;/p&gt;
+&lt;h3 id=&quot;1-设置名字和邮箱
+    
+    </summary>
+    
+      <category term="git" scheme="http:/dannyzhaoo.github.io/categories/git/"/>
+    
+    
+      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>安装mockjs</title>
