@@ -102,7 +102,7 @@
 <meta property="og:url" content="http:/dannyzhaoo.github.io/2017/06/02/安装mockjs/index.html">
 <meta property="og:site_name" content="流光">
 <meta property="og:description" content="安装、配置mockjs（ps：看文档还得再查，功力太浅！）首先配置安装 Node12#安装mock，这个只能在这个文件中使用npm install mockjs ​ 然后在这个文件夹中新建一个mock.js 1234567891011// 使用 Mockvar Mock = require(&amp;apos;mockjs&amp;apos;)var data = Mock.mock(&amp;#123;    // 属">
-<meta property="og:updated_time" content="2017-06-02T10:26:00.259Z">
+<meta property="og:updated_time" content="2017-06-06T12:08:24.892Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安装mockjs">
 <meta name="twitter:description" content="安装、配置mockjs（ps：看文档还得再查，功力太浅！）首先配置安装 Node12#安装mock，这个只能在这个文件中使用npm install mockjs ​ 然后在这个文件夹中新建一个mock.js 1234567891011// 使用 Mockvar Mock = require(&amp;apos;mockjs&amp;apos;)var data = Mock.mock(&amp;#123;    // 属">
@@ -366,11 +366,11 @@
 
       
         <h1 id="安装、配置mockjs（ps：看文档还得再查，功力太浅！）"><a href="#安装、配置mockjs（ps：看文档还得再查，功力太浅！）" class="headerlink" title="安装、配置mockjs（ps：看文档还得再查，功力太浅！）"></a>安装、配置mockjs（ps：看文档还得再查，功力太浅！）</h1><p>首先配置安装</p>
-<h4 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#安装mock，这个只能在这个文件中使用</div><div class="line">npm install mockjs</div></pre></td></tr></table></figure>
+<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#安装mock，这个只能在这个文件中使用</div><div class="line">npm install mockjs</div></pre></td></tr></table></figure>
 <p>​ 然后在这个文件夹中新建一个mock.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 使用 Mock</div><div class="line">var Mock = require(&apos;mockjs&apos;)</div><div class="line">var data = Mock.mock(&#123;</div><div class="line">    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素</div><div class="line">    &apos;list|1-10&apos;: [&#123;</div><div class="line">        // 属性 id 是一个自增数，起始值为 1，每次增 1</div><div class="line">        &apos;id|+1&apos;: 1</div><div class="line">    &#125;]</div><div class="line">&#125;)</div><div class="line">// 输出结果</div><div class="line">console.log(JSON.stringify(data, null, 4))</div></pre></td></tr></table></figure>
 <p>​ 在shell中运行，会看到相应的输出结果。</p>
-<h4 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是需要依赖bower，所以在哪里需要，就在哪里执行</div><div class="line">npm install -g bower #-g 全局</div><div class="line">bower install --save mockjs</div></pre></td></tr></table></figure>
+<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是需要依赖bower，所以在哪里需要，就在哪里执行</div><div class="line">npm install -g bower #-g 全局</div><div class="line">bower install --save mockjs</div></pre></td></tr></table></figure>
 <p>​ 然后调用就直接可以用</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./bower_components/mockjs/dist/mock.js&quot;&gt;&lt;/scrip</div></pre></td></tr></table></figure>
       
@@ -498,7 +498,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -509,7 +509,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -562,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装、配置mockjs（ps：看文档还得再查，功力太浅！）"><span class="nav-number">1.</span> <span class="nav-text">安装、配置mockjs（ps：看文档还得再查，功力太浅！）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Node"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Bower"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">Bower</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#安装、配置mockjs（ps：看文档还得再查，功力太浅！）"><span class="nav-number">1.</span> <span class="nav-text">安装、配置mockjs（ps：看文档还得再查，功力太浅！）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node"><span class="nav-number">1.1.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bower"><span class="nav-number">1.2.</span> <span class="nav-text">Bower</span></a></li></ol></li></ol></div>
             
 
           </div>

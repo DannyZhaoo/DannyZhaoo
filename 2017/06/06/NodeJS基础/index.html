@@ -82,6 +82,8 @@
 
 
 
+  
+
 
   <link rel="alternate" href="/atom.xml" title="流光" type="application/atom+xml" />
 
@@ -95,13 +97,16 @@
 
 
 
+<meta name="description" content="NodeJS基础什么是NodeJSJS是脚本原因，脚本语言都需要一个解析器才能运行。 每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供document之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供fs、http等内置对象。 用处创造Node">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NodeJS基础">
 <meta property="og:url" content="http:/dannyzhaoo.github.io/2017/06/06/NodeJS基础/index.html">
 <meta property="og:site_name" content="流光">
-<meta property="og:updated_time" content="2017-06-06T11:23:18.123Z">
+<meta property="og:description" content="NodeJS基础什么是NodeJSJS是脚本原因，脚本语言都需要一个解析器才能运行。 每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供document之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供fs、http等内置对象。 用处创造Node">
+<meta property="og:updated_time" content="2017-06-06T12:04:11.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NodeJS基础">
+<meta name="twitter:description" content="NodeJS基础什么是NodeJSJS是脚本原因，脚本语言都需要一个解析器才能运行。 每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供document之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供fs、http等内置对象。 用处创造Node">
 
 
 
@@ -315,6 +320,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -339,7 +366,20 @@
       
 
       
-        
+        <h1 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h1><h2 id="什么是NodeJS"><a href="#什么是NodeJS" class="headerlink" title="什么是NodeJS"></a>什么是NodeJS</h2><p>JS是脚本原因，脚本语言都需要一个解析器才能运行。</p>
+<p>每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供<code>document</code>之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供<code>fs</code>、<code>http</code>等内置对象。</p>
+<h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>创造NodeJS的目的是为了实现高性能Web服务器，看重的是事件机制和异步IO模型的优越性。</p>
+<p>nodejs在服务端的很活跃，出现了很多基于Nodejs的Web服务器，另一方面，NodeJS放前端可以跳出浏览器，更催生了更多的前端工具。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>编写稍大点的程序时，一般都会将代码模块化。在NodeJS中，一般将代码合理拆分到不同的JS文件中，每一个文件就是一个模块，而文件路径就是模块名。</p>
+<p>每个模块都有<code>require</code>、<code>exports</code> 、<code>module</code>三个预先定义好的变量可供使用。</p>
+<h3 id="require"><a href="#require" class="headerlink" title="require"></a>require</h3><p>这个模块用于在当前模块中加载和使用别的模块，传入一个模块名，返回一个模块导出对象。模块名可使用相对路径 、或者是绝对路径。</p>
+<h3 id="exports"><a href="#exports" class="headerlink" title="exports"></a>exports</h3><p>这个对象是当前模块的导出对象，用于导出模块共有方法和属性。别的模块通过<code>require</code>函数使用当前模块时得到的就是当前模块的<code>exports</code>对象。</p>
+<h3 id="module"><a href="#module" class="headerlink" title="module"></a>module</h3><p>通过<code>module</code>对象可以访问到当前模块的一些相关信息，但最多的用途是替换当前模块的导出对象。例如模块导出对象默认是一个普通对象，如果想改成一个函数的话，可以用下面的方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"Hello World!"</span>);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>以上代码中，模块默认导出对象被替换为一个函数。</p>
+<h3 id="模块初始化"><a href="#模块初始化" class="headerlink" title="模块初始化"></a>模块初始化</h3><p>一个模块中的JS代码仅在模块第一次被使用时执行一次，并在执过程中初始化模块的导出对象。之后，缓存起来的导出对象被重复利用。</p>
+<h3 id="主模块"><a href="#主模块" class="headerlink" title="主模块"></a>主模块</h3><p>通过命令行参数传递给NodeJS以启动程序的模块被称为主模块。主模块负责调度组成整个程序的其他模块完成工作。</p>
+
       
     </div>
 
@@ -384,6 +424,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/06/Latex入门笔记/" rel="prev" title="Latex入门笔记">
+                Latex入门笔记 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -430,8 +474,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -446,7 +499,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -457,7 +510,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -500,6 +553,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NodeJS基础"><span class="nav-number">1.</span> <span class="nav-text">NodeJS基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是NodeJS"><span class="nav-number">1.1.</span> <span class="nav-text">什么是NodeJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用处"><span class="nav-number">1.2.</span> <span class="nav-text">用处</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">1.3.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#require"><span class="nav-number">1.3.1.</span> <span class="nav-text">require</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exports"><span class="nav-number">1.3.2.</span> <span class="nav-text">exports</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#module"><span class="nav-number">1.3.3.</span> <span class="nav-text">module</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模块初始化"><span class="nav-number">1.3.4.</span> <span class="nav-text">模块初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主模块"><span class="nav-number">1.3.5.</span> <span class="nav-text">主模块</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

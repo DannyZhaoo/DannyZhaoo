@@ -95,17 +95,17 @@
 
 
 
-<meta name="description" content="配置客户端git配置客户端git，让git可以push和pull 1 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 2 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t">
+<meta name="description" content="配置客户端git配置客户端git，让git可以push和pull 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t rsa">
 <meta name="keywords" content="git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置客户端git">
 <meta property="og:url" content="http:/dannyzhaoo.github.io/2017/06/02/配置客户端git/index.html">
 <meta property="og:site_name" content="流光">
-<meta property="og:description" content="配置客户端git配置客户端git，让git可以push和pull 1 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 2 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t">
-<meta property="og:updated_time" content="2017-06-02T10:45:41.822Z">
+<meta property="og:description" content="配置客户端git配置客户端git，让git可以push和pull 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t rsa">
+<meta property="og:updated_time" content="2017-06-06T12:10:13.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="配置客户端git">
-<meta name="twitter:description" content="配置客户端git配置客户端git，让git可以push和pull 1 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 2 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t">
+<meta name="twitter:description" content="配置客户端git配置客户端git，让git可以push和pull 设置名字和邮箱地址12$ git config --global user.name &quot;John Doe&quot;$ git config --global user.email johndoe@example.com 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可： 1ssh-keygen -t rsa">
 
 
 
@@ -366,10 +366,10 @@
 
       
         <h1 id="配置客户端git"><a href="#配置客户端git" class="headerlink" title="配置客户端git"></a>配置客户端git</h1><p>配置客户端git，让git可以push和pull</p>
-<h3 id="1-设置名字和邮箱地址"><a href="#1-设置名字和邮箱地址" class="headerlink" title="1 设置名字和邮箱地址"></a>1 设置名字和邮箱地址</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git config --global user.name "John Doe"</div><div class="line"><span class="meta">$</span> git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
-<h3 id="2-生成一个新的ssh秘钥"><a href="#2-生成一个新的ssh秘钥" class="headerlink" title="2 生成一个新的ssh秘钥"></a>2 生成一个新的ssh秘钥</h3><p>打开 Git Bash，输入如下命令，然后连续按三个回车即可：</p>
+<h2 id="设置名字和邮箱地址"><a href="#设置名字和邮箱地址" class="headerlink" title="设置名字和邮箱地址"></a>设置名字和邮箱地址</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git config --global user.name "John Doe"</div><div class="line"><span class="meta">$</span> git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
+<h2 id="生成一个新的ssh秘钥"><a href="#生成一个新的ssh秘钥" class="headerlink" title="生成一个新的ssh秘钥"></a>生成一个新的ssh秘钥</h2><p>打开 Git Bash，输入如下命令，然后连续按三个回车即可：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure>
-<h3 id="3-将生成的公钥复制到GitHub"><a href="#3-将生成的公钥复制到GitHub" class="headerlink" title="3 将生成的公钥复制到GitHub"></a>3 将生成的公钥复制到GitHub</h3><h3 id="4-测试"><a href="#4-测试" class="headerlink" title="4 测试"></a>4 测试</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
+<h2 id="将生成的公钥复制到GitHub"><a href="#将生成的公钥复制到GitHub" class="headerlink" title="将生成的公钥复制到GitHub"></a>将生成的公钥复制到GitHub</h2><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
 <p>输入yes后回车，如果提示中的用户名是你的，说明设置成功。</p>
 
       
@@ -497,7 +497,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -508,7 +508,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -561,7 +561,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置客户端git"><span class="nav-number">1.</span> <span class="nav-text">配置客户端git</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-设置名字和邮箱地址"><span class="nav-number">1.0.1.</span> <span class="nav-text">1 设置名字和邮箱地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-生成一个新的ssh秘钥"><span class="nav-number">1.0.2.</span> <span class="nav-text">2 生成一个新的ssh秘钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-将生成的公钥复制到GitHub"><span class="nav-number">1.0.3.</span> <span class="nav-text">3 将生成的公钥复制到GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-测试"><span class="nav-number">1.0.4.</span> <span class="nav-text">4 测试</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#配置客户端git"><span class="nav-number">1.</span> <span class="nav-text">配置客户端git</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#设置名字和邮箱地址"><span class="nav-number">1.1.</span> <span class="nav-text">设置名字和邮箱地址</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成一个新的ssh秘钥"><span class="nav-number">1.2.</span> <span class="nav-text">生成一个新的ssh秘钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#将生成的公钥复制到GitHub"><span class="nav-number">1.3.</span> <span class="nav-text">将生成的公钥复制到GitHub</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试"><span class="nav-number">1.4.</span> <span class="nav-text">测试</span></a></li></ol></li></ol></div>
             
 
           </div>
