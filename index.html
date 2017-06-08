@@ -318,6 +318,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -344,8 +366,10 @@
       
         
           
-          
-          
+          使用NodeJS编写程序前，为了有个良好的开端，首先需要准备好代码的目录结构和部署方式。
+模块路径解析规则require函数支持绝对路径、也支持相对路径。但是这两种路径在模块之间建立了强耦合关系，一点某个模块文件的存放位置需要变更，使用该模块的其他模块的代码也需要跟着调整。因此，require函数支持第三种形式的路径，写法类似于foo/bar，并依次按照以下规则解析路径，直到找到模块的位置。
+内置模块如果传递给require函数的是No
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/06/08/代码的组织和部署/#more" rel="contents">
@@ -484,10 +508,10 @@
       
         
           
-          Latex入门笔记因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。
+          因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。
 下载安装在ctex.org下载ctex套装(203Mb或1.3Gb)（含MikTeX及WinEdt），等着下载好了之后，就一步一步安装。
 写第一个文档主要是使用界面较为简单的TeXworks。
-1234\documentclass&#123;article&#125;\begin&#123;document&#125;hell
+1234\documentclass&#123;article&#125;\begin&#123;document&#125;hello,world\e
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -627,9 +651,9 @@
       
         
           
-          NodeJS基础什么是NodeJSJS是脚本原因，脚本语言都需要一个解析器才能运行。
+          什么是NodeJSJS是脚本原因，脚本语言都需要一个解析器才能运行。
 每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供document之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供fs、http等内置对象。
-用处创造NodeJS的目的是为了实现高性能Web服务器，
+用处创造NodeJS的目的是为了实现高性能Web服务器，看重的是事件机制
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -769,7 +793,7 @@
       
         
           
-          HTML5+CSS3实现春节贺卡目标
+          目标
 根据设计稿对项目进行整套项目的需求进行剖析并开发。
 对项目开发流程需要有一个基本的了解。
 运用切图、重构、前端的知识对项目进行灵活控制。
@@ -781,7 +805,7 @@
 
 开发技能分析
 移动端项目，采取Html5作为项目的结构层。
-分析网页呈现形势，直
+分析网页呈现形势，直接采用CSS3完成网页的表现层。
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -921,14 +945,15 @@
       
         
           
-          一个基于node.js的web应用web应用的目标
+          web应用的目标
 用户可以通过浏览器使用。
 当用户请求http://domain/start时，可以看到一个欢迎界面，页面上有一个文件上传的表单。
 用户可以选择一个图片并提交表单，随后文件被上传到http://domain/upload，该页面完成上传后会把图片显示在页面上。
 
 应用不同模块分析
 需要一个http服务器。
-对于不同的请求，会根据请求的url，服务器给出不同的响应。因此，需要一个路由，用于
+对于不同的请求，会根据请求的url，服务器给出不同的响应。因此，需要一个路由，用于把请求对应到请求处理程序。
+当请求
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -997,7 +1022,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/06/03/电子词典的安装/" itemprop="url">电子词典的安装</a></h1>
+                <a class="post-title-link" href="/2017/06/03/电子词典的安装/" itemprop="url">电子词典mdict的安装</a></h1>
         
 
         <div class="post-meta">
@@ -1068,14 +1093,14 @@
       
         
           
-          电子词典mdict的安装下载下载好Mdict在mdcit上下载windows 1.3RC4
+          下载下载好Mdict在mdcit上下载windows 1.3RC4
 下载词典包词典包的资源地址:http://dwz/cn/527Bso 密码是：7rf3
 建议将上面所有的词典资源都下载下来
 配置导入词库打开mdict.exe，然后点击上面菜单的词库，再点击词库管理，导入刚才下载好的词典包
 联合查询
 这样做的目的是每次查询都能在每个词典中进行查询
 
-在词库管理界面，点击新建分组，进入分组后，点击加入词典，将准备一
+在词库管理界面，点击新建分组，进入分组后，点击加入词典，将准备一起查询的词典放在这里，然
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1215,10 +1240,10 @@
       
         
           
-          配置客户端git配置客户端git，让git可以push和pull
+          配置客户端git，让git可以push和pull
 设置名字和邮箱地址12$ git config --global user.name "John Doe"$ git config --global user.email johndoe@example.com
 生成一个新的ssh秘钥打开 Git Bash，输入如下命令，然后连续按三个回车即可：
-1ssh-keygen -t rsa -C &quot;your_email
+1ssh-keygen -t rsa -C &quot;your_email@example
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1358,10 +1383,10 @@
       
         
           
-          安装、配置mockjs（ps：看文档还得再查，功力太浅！）首先配置安装
+          首先配置安装
 Node12#安装mock，这个只能在这个文件中使用npm install mockjs
 ​ 然后在这个文件夹中新建一个mock.js
-1234567891011// 使用 Mockvar Mock = require(&apos;mockjs&apos;)var data = Mock.mock(&#123;    // 属性 list 的值是一个数组，其中含有 
+1234567891011// 使用 Mockvar Mock = require(&apos;mockjs&apos;)var data = Mock.mock(&#123;    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素    &apos;list|1-10
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1501,9 +1526,9 @@ Node12#安装mock，这个只能在这个文件中使用npm install mockjs
       
         
           
-          《岛上书店》感受这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。
+          这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。
 这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。
-无论何时，无论遇到哪种困难，人生的道路从来不是一条，而人的一生也不会因为什么别的东西而停止，总是要一步一步走下去，纵然可能眼前的一切会让人感到失望或者说是绝望。而且，人
+无论何时，无论遇到哪种困难，人生的道路从来不是一条，而人的一生也不会因为什么别的东西而停止，总是要一步一步走下去，纵然可能眼前的一切会让人感到失望或者说是绝望。而且，人生总会迎来转机，
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1621,14 +1646,16 @@ Node12#安装mock，这个只能在这个文件中使用npm install mockjs
       
         
           
-          利用TimeOut制作导航html部分
+          html部分
 首先用Emmet写出html文件的结构div#nav&gt;ul&gt;(li&gt;a[href=”javascript::”]+div.subnav&gt;em.arrow+p&gt;span&gt;(a[href=”javascript”])8)8
 好处：
 ​ 用Emmet写html速度很快，而且结构一目了然，在sublime中的快捷键是ctrl + alt + enter。
 
 
 
-然后补充
+然后补充相应的导航内容
+
+1234
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1740,7 +1767,7 @@ Node12#安装mock，这个只能在这个文件中使用npm install mockjs
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

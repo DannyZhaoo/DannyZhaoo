@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-06-08T01:04:29.491Z</updated>
+  <updated>2017-06-08T02:43:41.024Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -20,12 +20,129 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/08/%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BB%84%E7%BB%87%E5%92%8C%E9%83%A8%E7%BD%B2/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/08/代码的组织和部署/</id>
     <published>2017-06-08T01:04:29.000Z</published>
-    <updated>2017-06-08T01:04:29.491Z</updated>
+    <updated>2017-06-08T02:43:41.024Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用NodeJS编写程序前，为了有个良好的开端，首先需要准备好代码的目录结构和部署方式。</p>
+<h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><p><code>require</code>函数支持绝对路径、也支持相对路径。但是这两种路径在模块之间建立了强耦合关系，一点某个模块文件的存放位置需要变更，使用该模块的其他模块的代码也需要跟着调整。因此，<code>require</code>函数支持第三种形式的路径，写法类似于<code>foo/bar</code>，并依次按照以下规则解析路径，直到找到模块的位置。</p>
+<h3 id="内置模块"><a href="#内置模块" class="headerlink" title="内置模块"></a>内置模块</h3><p>如果传递给<code>require</code>函数的是NodeJS内置模块名称，不做路径解析，直接返回内部模块的导出对象，例如<code>require(&#39;fs&#39;)</code>。</p>
+<h3 id="node-modules目录"><a href="#node-modules目录" class="headerlink" title="node_modules目录"></a>node_modules目录</h3><p>NodeJS定义了一个特殊的<code>node_modules</code>目录用于存放模块。例如某个模块的绝对路径为<code>/home/user/hello.js</code>，在该模块中使用<code>require(&#39;foo/bar&#39;)</code>方式加载模块时，则NodeJS依次尝试使用以下路径。</p>
+<blockquote>
+<p>/home/user/node_modules/foo/bar</p>
+<p>/home/node_modules/foo/bar</p>
+<p>/node_modules/foo/bar</p>
+</blockquote>
+<h3 id="NODE-PATH环境变量"><a href="#NODE-PATH环境变量" class="headerlink" title="NODE_PATH环境变量"></a>NODE_PATH环境变量</h3><p>与PATH环境变量类似，NodeJS允许通过NODE_PATH环境变量来指定额外的模块搜索路径。NODE_PATH环境变量中包含一到多个目录路径，路径之间在Linux下使用<code>:</code>分隔，在Windows下使用<code>;</code>分隔。例如定义了以下NODE_PATH环境变量:</p>
+<blockquote>
+<p>NODE_PATH=/home/user/lib:/home/lib</p>
+</blockquote>
+<p>当使用<code>require(&#39;foo/bar&#39;)</code>的方式加载模块时，则NodeJS依次尝试以下路径。</p>
+<blockquote>
+<p>/home/user/lib/foo/bar</p>
+<p>/home/lib/foo/bar</p>
+</blockquote>
+<h2 id="包"><a href="#包" class="headerlink" title="包"></a>包</h2><p>JS模块的基本单位是单个JS文件，但复杂些的模块往往由多个子模块组成。为了便于管理和使用，我们可以把有多个子模块组成的大模块称作<strong>包</strong>，并把所有子模块放在同一个目录里。</p>
+<p>在组成一个包的所有子模块中，需要有一个入口模块。入口模块的导出对象被作为包的导出对象。例如有以下目录结构：</p>
+<blockquote>
+<p>- /home/user/lib/<br>​    - cat/<br>​        head.js<br>​        body.js<br>​        main.js</p>
+</blockquote>
+<p>其中<code>cat</code>目录定义了一个包，其中包含了3个子模块。<code>main.js</code>作为入口模块，其内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> head = <span class="built_in">require</span>(<span class="string">'./head'</span>);</div><div class="line"><span class="keyword">var</span> body = <span class="built_in">require</span>(<span class="string">'./body'</span>);</div><div class="line"></div><div class="line">exports.create = <span class="function"><span class="keyword">function</span> (<span class="params">name</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">name</span>: name,</div><div class="line">        <span class="attr">head</span>: head.create(),</div><div class="line">        <span class="attr">body</span>: body.create()</div><div class="line">    &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>在其他模块里使用包的时候，需要加载包的入口模块。接着上例，使用<code>require(&#39;/home/user/lib/cat/main&#39;)</code>能达到目的，但是入口模块名称出现在路径里看上去不是个好主意。因此我们需要做点额外的工作，让包使用起来更像是单个模块。</p>
+<h3 id="index-js"><a href="#index-js" class="headerlink" title="index.js"></a>index.js</h3><p>当模块的文件名是<code>index.js</code>，加载模块时可以使用模块所在目录的路径代替模块文件路径，因此接着上例，以下两条语句等价：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat'</span>)</div><div class="line"><span class="keyword">var</span> cat = <span class="built_in">require</span>(<span class="string">'/home/user/lib/cat/index'</span>)</div></pre></td></tr></table></figure>
+<p>这样处理后，就只需要把包目录路径传递给<code>require</code>函数，感觉上整个目录被当作单个模块使用，更有整体感。</p>
+<h3 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h3><p>如果想自定义入口模块的文件名和存放位置，就需要在包目录下包含一个<code>package.json</code>文件，并在其中指定入口模块的路径。上例中<code>cat</code>模块可以重构如下：</p>
+<blockquote>
+<p>- /home/user/lib/<br>​    -  cat/<br>​        + doc/<br>​        - lib/<br>​            head.js<br>​            body.js<br>​            main.js<br>​        + tests/<br>​        package.json</p>
+</blockquote>
+<p>其中<code>package.json</code>内容如下：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"cat"</span>,</div><div class="line">    <span class="attr">"main"</span>: <span class="string">"./lib/main.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如此一来，就可以使用<code>require(&#39;/home/user/lib/cat&#39;)</code>的方式加载模块。NodeJS会根据包目录下的<code>package.json</code>找到入口模块所在位置。</p>
+<h2 id="命令行程序"><a href="#命令行程序" class="headerlink" title="命令行程序"></a>命令行程序</h2><p>使用NodeJS编写的东西，要么是一个包，要么是一个命令行程序，而前者最终也会用于开发后者。因此我们在部署代码的时候需要一些技巧，让用户觉得自己是在使用一个命令行程序。</p>
+<p>例如我们用NodeJS写了个程序，可以把命令行参数原样打印出来。该程序很简单，在主模块内实现了所有的功能。并且写好后，我们该把程序部署在<code>/home/user/bin/node-echo.js</code>这个位置。为了在任何目录下都能运行该程序，我们需要使用以下终端命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> node /home/user/bin/node-echo.js Hello World</div><div class="line">Hello World</div></pre></td></tr></table></figure>
+<p>这种使用方式看起来不怎么像是一个命令行程序，下面的才是我们期望的方式。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> node-echo Hello World</div></pre></td></tr></table></figure>
+<h3 id="linux"><a href="#linux" class="headerlink" title="linux"></a>linux</h3><p>在Linux系统下，我们可以把JS文件当作shell脚本来运行，从而达到上述目的，具体步骤如下：</p>
+<ol>
+<li><p>在shell脚本中，可以通过<code>#!</code>注释来指定当前脚本使用的解析器。所以我们首先在<code>node-echo.js</code>文件顶部增加以下一行注释，表明当前脚本使用NodeJS解析。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#! /usr/bin/env node</span></div></pre></td></tr></table></figure>
+<p>NodeJS会忽略掉位于JS模块首行的<code>#!</code>注释，不必担心这行注释是非法语句。</p>
+</li>
+<li><p>然后，我们使用以下命令赋予<code>node-echo.js</code>文件执行权限。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> chmod +x /home/user/bin/node-echo.js</div></pre></td></tr></table></figure>
+</li>
+<li><p>最后，我们在PATH环境变量中指定的某个目录下，例如在<code>/usr/local/bin</code>下边创建一个软链文件，文件名与我们希望使用的终端命令同名，命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> sudo ln -s /home/user/bin/node-echo.js /usr/local/bin/node-echo</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>在Windows系统下的做法完全不同，我们得靠<code>.cmd</code>文件来解决问题。假设<code>node-echo.js</code>存放在<code>C:\Users\user\bin</code>目录，并且该目录已经添加到<strong>PATH环境变量</strong>里了。接下来需要在该目录下新建一个名为<code>node-echo.cmd</code>的文件，文件内容如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@node &quot;C:\User\user\bin\node-echo.js&quot; %*</div></pre></td></tr></table></figure>
+<p>这样处理后，我们就可以在任何目录下使用<code>node-echo</code>命令了。</p>
+<h2 id="工程目录"><a href="#工程目录" class="headerlink" title="工程目录"></a>工程目录</h2><p>了解了以上知识后，现在我们可以来完整地规划一个工程目录了。以编写一个<strong>命令行程序</strong>为例，一般我们会同时提供<strong>命令行模式</strong>和<strong>API模式</strong>两种使用方式，并且我们会借助三方包来编写代码。除了代码外，一个完整的程序也应该有自己的<strong>文档</strong>和<strong>测试用例</strong>。因此，一个标准的工程目录都看起来像下边这样。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">- /home/user/workspace/node-echo/   # 工程目录</div><div class="line">    - bin/                          # 存放命令行相关代码</div><div class="line">        node-echo</div><div class="line">    + doc/                          # 存放文档</div><div class="line">    - lib/                          # 存放API相关代码</div><div class="line">        echo.js</div><div class="line">    - node_modules/                 # 存放三方包</div><div class="line">        + argv/</div><div class="line">    + tests/                        # 存放测试用例</div><div class="line">    package.json                    # 元数据文件</div><div class="line">    README.md                       # 说明文件</div></pre></td></tr></table></figure>
+<p>其中部分文件内容如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* bin/node-echo */</span></div><div class="line"><span class="keyword">var</span> argv = <span class="built_in">require</span>(<span class="string">'argv'</span>),</div><div class="line">    echo = <span class="built_in">require</span>(<span class="string">'../lib/echo'</span>);</div><div class="line"><span class="built_in">console</span>.log(echo(argv.join(<span class="string">' '</span>)));</div><div class="line"></div><div class="line"><span class="comment">/* lib/echo.js */</span></div><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">message</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> message;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">/* package.json */</span></div><div class="line">&#123;</div><div class="line">    <span class="string">"name"</span>: <span class="string">"node-echo"</span>,</div><div class="line">    <span class="string">"main"</span>: <span class="string">"./lib/echo.js"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上例子中分类存放了不同类型的文件，并通过<code>node_moudles</code>目录直接使用三方包名加载模块。此外，定义了<code>package.json</code>之后，<code>node-echo</code>目录也可被当作一个包来使用。</p>
+<h2 id="NPM"><a href="#NPM" class="headerlink" title="NPM"></a>NPM</h2><p>NPM是随同NodeJS一起安装的包管理工具，能解决NodeJS代码部署上的很多问题，常见的使用场景有以下几种：</p>
+<ul>
+<li>允许用户从NPM服务器下载别人编写的三方包到本地使用。</li>
+<li>允许用户从NPM服务器下载并安装别人编写的命令行程序到本地使用。</li>
+<li>允许用户将自己编写的包或命令行程序上传到NPM服务器供别人使用。</li>
+</ul>
+<p>可以看到，NPM建立了一个NodeJS生态圈，NodeJS开发者和用户可以在里边互通有无。以下分别介绍这三种场景下怎样使用NPM。</p>
+<h3 id="下载三方包"><a href="#下载三方包" class="headerlink" title="下载三方包"></a>下载三方包</h3><p>需要使用三方包时，首先得知道有哪些包可用。虽然<a href="https://npmjs.org/" target="_blank" rel="external">npmjs.org</a>提供了个搜索框可以根据包名来搜索，但如果连想使用的三方包的名字都不确定的话，就请百度一下吧。知道了包名后，比如上边例子中的<code>argv</code>，就可以在工程目录下打开终端，使用以下命令来下载三方包。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm install argv</div><div class="line">...</div><div class="line">argv@0.0.2 node_modules\argv</div></pre></td></tr></table></figure>
+<p>下载好之后，<code>argv</code>包就放在了工程目录下的<code>node_modules</code>目录中，因此在代码中只需要通过<code>require(&#39;argv&#39;)</code>的方式就好，无需指定三方包路径。</p>
+<p>以上命令默认下载最新版三方包，如果想要下载指定版本的话，可以在包名后边加上<code>@</code>，例如通过以下命令可下载0.0.1版的<code>argv</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ npm install argv@0.0.1</div><div class="line">...</div><div class="line">argv@0.0.1 node_modules\argv</div></pre></td></tr></table></figure>
+<p>如果使用到的三方包比较多，在终端下一个包一条命令地安装未免太人肉了。因此NPM对<code>package.json</code>的字段做了扩展，允许在其中申明三方包依赖。因此，上边例子中的<code>package.json</code>可以改写如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;node-echo&quot;,</div><div class="line">    &quot;main&quot;: &quot;./lib/echo.js&quot;,</div><div class="line">    &quot;dependencies&quot;: &#123;</div><div class="line">        &quot;argv&quot;: &quot;0.0.2&quot;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样处理后，在工程目录下就可以使用<code>npm install</code>命令批量安装三方包了。更重要的是，当以后<code>node-echo</code>也上传到了NPM服务器，别人下载这个包时，NPM会根据包中申明的三方包依赖自动下载进一步依赖的三方包。例如，使用<code>npm install node-echo</code>命令时，NPM会自动创建以下目录结构。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- project/</div><div class="line">    - node_modules/</div><div class="line">        - node-echo/</div><div class="line">            - node_modules/</div><div class="line">                + argv/</div><div class="line">            ...</div><div class="line">    ...</div></pre></td></tr></table></figure>
+<p>如此一来，用户只需关心自己直接使用的三方包，不需要自己去解决所有包的依赖关系。</p>
+<h3 id="安装命令行程序"><a href="#安装命令行程序" class="headerlink" title="安装命令行程序"></a>安装命令行程序</h3><p>从NPM服务上下载安装一个命令行程序的方法与三方包类似。例如上例中的<code>node-echo</code>提供了命令行使用方式，只要<code>node-echo</code>自己配置好了相关的<code>package.json</code>字段，对于用户而言，只需要使用以下命令安装程序。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install node-echo -g</div></pre></td></tr></table></figure>
+<p>参数中的<code>-g</code>表示全局安装，因此<code>node-echo</code>会默认安装到以下位置，并且NPM会自动创建好Linux系统下需要的软链文件或Windows系统下需要的<code>.cmd</code>文件。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">- /usr/local/               # Linux系统下</div><div class="line">    - lib/node_modules/</div><div class="line">        + node-echo/</div><div class="line">        ...</div><div class="line">    - bin/</div><div class="line">        node-echo</div><div class="line">        ...</div><div class="line">    ...</div><div class="line"></div><div class="line">- %APPDATA%\npm\            # Windows系统下</div><div class="line">    - node_modules\</div><div class="line">        + node-echo\</div><div class="line">        ...</div><div class="line">    node-echo.cmd</div><div class="line">    ...</div></pre></td></tr></table></figure>
+<h3 id="发布代码"><a href="#发布代码" class="headerlink" title="发布代码"></a>发布代码</h3><p>第一次使用NPM发布代码前需要注册一个账号。终端下运行<code>npm adduser</code>，之后按照提示做即可。账号搞定后，接着我们需要编辑<code>package.json</code>文件，加入NPM必需的字段。接着上边<code>node-echo</code>的例子，<code>package.json</code>里必要的字段如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;name&quot;: &quot;node-echo&quot;,           # 包名，在NPM服务器上须要保持唯一</div><div class="line">    &quot;version&quot;: &quot;1.0.0&quot;,            # 当前版本号</div><div class="line">    &quot;dependencies&quot;: &#123;              # 三方包依赖，需要指定包名和版本号</div><div class="line">        &quot;argv&quot;: &quot;0.0.2&quot;</div><div class="line">      &#125;,</div><div class="line">    &quot;main&quot;: &quot;./lib/echo.js&quot;,       # 入口模块位置</div><div class="line">    &quot;bin&quot; : &#123;</div><div class="line">        &quot;node-echo&quot;: &quot;./bin/node-echo&quot;      # 命令行程序名和主模块位置</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>之后，我们就可以在<code>package.json</code>所在目录下运行<code>npm publish</code>发布代码了。</p>
+<h3 id="版本号"><a href="#版本号" class="headerlink" title="版本号"></a>版本号</h3><p>使用NPM下载和发布代码时都会接触到版本号。NPM使用语义版本号来管理代码，这里简单介绍一下。</p>
+<p>语义版本号分为<code>X.Y.Z</code>三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">+ 如果只是修复bug，需要更新Z位。</div><div class="line"></div><div class="line">+ 如果是新增了功能，但是向下兼容，需要更新Y位。</div><div class="line"></div><div class="line">+ 如果有大变动，向下不兼容，需要更新X位。</div></pre></td></tr></table></figure>
+<p>版本号有了这个保证后，在申明三方包依赖时，除了可依赖于一个固定版本号外，还可依赖于某个范围的版本号。例如<code>&quot;argv&quot;: &quot;0.0.x&quot;</code>表示依赖于<code>0.0.x</code>系列的最新版<code>argv</code>。NPM支持的所有版本号范围指定方式可以查看<a href="https://npmjs.org/doc/files/package.json.html#dependencies" target="_blank" rel="external">官方文档</a>。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>除了本章介绍的部分外，NPM还提供了很多功能，<code>package.json</code>里也有很多其它有用的字段。除了可以在<a href="https://npmjs.org/doc/" target="_blank" rel="external">npmjs.org/doc/</a>查看官方文档外，这里再介绍一些NPM常用命令。</p>
+<ul>
+<li>NPM提供了很多命令，例如<code>install</code>和<code>publish</code>，使用<code>npm help</code>可查看所有命令。</li>
+<li>使用<code>npm help</code>可查看某条命令的详细帮助，例如<code>npm help install</code>。</li>
+<li>在<code>package.json</code>所在目录下使用<code>npm install . -g</code>可先在本地安装当前命令行程序，可用于发布前的本地测试。</li>
+<li>使用<code>npm update</code>可以把当前目录下<code>node_modules</code>子目录里边的对应模块更新至最新版本。</li>
+<li>使用<code>npm update -g</code>可以把全局安装的对应命令行程序更新至最新版。</li>
+<li>使用<code>npm cache clear</code>可以清空NPM本地缓存，用于对付使用相同版本号发布新版本代码的人。</li>
+<li>使用<code>npm unpublish @</code>可以撤销发布自己发布过的某个版本代码。</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>本章介绍了使用NodeJS编写代码前需要做的准备工作，总结起来有以下几点：</p>
+<ul>
+<li>编写代码前先规划好目录结构，才能做到有条不紊。</li>
+<li>稍大些的程序可以将代码拆分为多个模块管理，更大些的程序可以使用包来组织模块。</li>
+<li>合理使用<code>node_modules</code>和<code>NODE_PATH</code>来解耦包的使用方式和物理路径。</li>
+<li>使用NPM加入NodeJS生态圈互通有无。</li>
+<li>想到了心仪的包名时请提前在NPM上抢注。</li>
+</ul>
+]]></content>
     
     <summary type="html">
     
+      &lt;p&gt;使用NodeJS编写程序前，为了有个良好的开端，首先需要准备好代码的目录结构和部署方式。&lt;/p&gt;
+&lt;h2 id=&quot;模块路径解析规则&quot;&gt;&lt;a href=&quot;#模块路径解析规则&quot; class=&quot;headerlink&quot; title=&quot;模块路径解析规则&quot;&gt;&lt;/a&gt;模块路径解析规则&lt;/
+    
     </summary>
     
+      <category term="nodejs" scheme="http:/dannyzhaoo.github.io/categories/nodejs/"/>
+    
+    
+      <category term="七天学会NodeJS" scheme="http:/dannyzhaoo.github.io/tags/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%BC%9ANodeJS/"/>
     
   </entry>
   
@@ -34,9 +151,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/06/Latex%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/06/Latex入门笔记/</id>
     <published>2017-06-06T12:20:23.000Z</published>
-    <updated>2017-06-06T13:51:58.751Z</updated>
+    <updated>2017-06-08T02:44:25.577Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Latex入门笔记"><a href="#Latex入门笔记" class="headerlink" title="Latex入门笔记"></a>Latex入门笔记</h1><p>因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。</p>
+    <content type="html"><![CDATA[<p>因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。</p>
 <h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>在ctex.org下载ctex套装(203Mb或1.3Gb)（含MikTeX及WinEdt），等着下载好了之后，就一步一步安装。</p>
 <h2 id="写第一个文档"><a href="#写第一个文档" class="headerlink" title="写第一个文档"></a>写第一个文档</h2><p>主要是使用界面较为简单的<strong>TeXworks</strong>。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">hello,world</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
@@ -108,7 +225,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Latex入门笔记&quot;&gt;&lt;a href=&quot;#Latex入门笔记&quot; class=&quot;headerlink&quot; title=&quot;Latex入门笔记&quot;&gt;&lt;/a&gt;Latex入门笔记&lt;/h1&gt;&lt;p&gt;因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下La
+      &lt;p&gt;因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。&lt;/p&gt;
+&lt;h2 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h2&gt;&lt;p&gt;在ctex.or
     
     </summary>
     
@@ -122,9 +240,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/06/NodeJS%E5%9F%BA%E7%A1%80/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/06/NodeJS基础/</id>
     <published>2017-06-06T11:23:18.000Z</published>
-    <updated>2017-06-06T12:04:11.534Z</updated>
+    <updated>2017-06-08T02:17:36.758Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="NodeJS基础"><a href="#NodeJS基础" class="headerlink" title="NodeJS基础"></a>NodeJS基础</h1><h2 id="什么是NodeJS"><a href="#什么是NodeJS" class="headerlink" title="什么是NodeJS"></a>什么是NodeJS</h2><p>JS是脚本原因，脚本语言都需要一个解析器才能运行。</p>
+    <content type="html"><![CDATA[<h2 id="什么是NodeJS"><a href="#什么是NodeJS" class="headerlink" title="什么是NodeJS"></a>什么是NodeJS</h2><p>JS是脚本原因，脚本语言都需要一个解析器才能运行。</p>
 <p>每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供<code>document</code>之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供<code>fs</code>、<code>http</code>等内置对象。</p>
 <h2 id="用处"><a href="#用处" class="headerlink" title="用处"></a>用处</h2><p>创造NodeJS的目的是为了实现高性能Web服务器，看重的是事件机制和异步IO模型的优越性。</p>
 <p>nodejs在服务端的很活跃，出现了很多基于Nodejs的Web服务器，另一方面，NodeJS放前端可以跳出浏览器，更催生了更多的前端工具。</p>
@@ -141,12 +259,15 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;NodeJS基础&quot;&gt;&lt;a href=&quot;#NodeJS基础&quot; class=&quot;headerlink&quot; title=&quot;NodeJS基础&quot;&gt;&lt;/a&gt;NodeJS基础&lt;/h1&gt;&lt;h2 id=&quot;什么是NodeJS&quot;&gt;&lt;a href=&quot;#什么是NodeJS&quot; class=&quot;he
+      &lt;h2 id=&quot;什么是NodeJS&quot;&gt;&lt;a href=&quot;#什么是NodeJS&quot; class=&quot;headerlink&quot; title=&quot;什么是NodeJS&quot;&gt;&lt;/a&gt;什么是NodeJS&lt;/h2&gt;&lt;p&gt;JS是脚本原因，脚本语言都需要一个解析器才能运行。&lt;/p&gt;
+&lt;p&gt;每个解析器都是一个
     
     </summary>
     
       <category term="nodejs" scheme="http:/dannyzhaoo.github.io/categories/nodejs/"/>
     
+    
+      <category term="七天学会NodeJS" scheme="http:/dannyzhaoo.github.io/tags/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%BC%9ANodeJS/"/>
     
   </entry>
   
@@ -155,9 +276,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/05/HTML5-CSS3%E5%AE%9E%E7%8E%B0%E6%98%A5%E8%8A%82%E8%B4%BA%E5%8D%A1/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/05/HTML5-CSS3实现春节贺卡/</id>
     <published>2017-06-05T10:37:39.000Z</published>
-    <updated>2017-06-06T12:08:03.709Z</updated>
+    <updated>2017-06-08T02:44:14.034Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="HTML5-CSS3实现春节贺卡"><a href="#HTML5-CSS3实现春节贺卡" class="headerlink" title="HTML5+CSS3实现春节贺卡"></a>HTML5+CSS3实现春节贺卡</h1><h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
+    <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>根据设计稿对项目进行整套项目的需求进行剖析并开发。</li>
 <li>对项目开发流程需要有一个基本的了解。</li>
 <li>运用切图、重构、前端的知识对项目进行灵活控制。</li>
@@ -198,7 +319,10 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;HTML5-CSS3实现春节贺卡&quot;&gt;&lt;a href=&quot;#HTML5-CSS3实现春节贺卡&quot; class=&quot;headerlink&quot; title=&quot;HTML5+CSS3实现春节贺卡&quot;&gt;&lt;/a&gt;HTML5+CSS3实现春节贺卡&lt;/h1&gt;&lt;h2 id=&quot;目标&quot;&gt;&lt;a hr
+      &lt;h2 id=&quot;目标&quot;&gt;&lt;a href=&quot;#目标&quot; class=&quot;headerlink&quot; title=&quot;目标&quot;&gt;&lt;/a&gt;目标&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;根据设计稿对项目进行整套项目的需求进行剖析并开发。&lt;/li&gt;
+&lt;li&gt;对项目开发流程需要有一个基本的了解。&lt;/li&gt;
+&lt;li&gt;运
     
     </summary>
     
@@ -214,9 +338,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/03/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Enode-js%E7%9A%84web%E5%BA%94%E7%94%A8/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/03/一个基于node-js的web应用/</id>
     <published>2017-06-03T05:57:13.000Z</published>
-    <updated>2017-06-06T12:11:55.635Z</updated>
+    <updated>2017-06-08T02:45:24.213Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="一个基于node-js的web应用"><a href="#一个基于node-js的web应用" class="headerlink" title="一个基于node.js的web应用"></a>一个基于node.js的web应用</h1><h2 id="web应用的目标"><a href="#web应用的目标" class="headerlink" title="web应用的目标"></a>web应用的目标</h2><ul>
+    <content type="html"><![CDATA[<h2 id="web应用的目标"><a href="#web应用的目标" class="headerlink" title="web应用的目标"></a>web应用的目标</h2><ul>
 <li>用户可以通过浏览器使用。</li>
 <li>当用户请求<a href="http://domain/start时，可以看到一个欢迎界面，页面上有一个文件上传的表单。" target="_blank" rel="external">http://domain/start时，可以看到一个欢迎界面，页面上有一个文件上传的表单。</a></li>
 <li>用户可以选择一个图片并提交表单，随后文件被上传到<a href="http://domain/upload，该页面完成上传后会把图片显示在页面上。" target="_blank" rel="external">http://domain/upload，该页面完成上传后会把图片显示在页面上。</a></li>
@@ -287,7 +411,9 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;一个基于node-js的web应用&quot;&gt;&lt;a href=&quot;#一个基于node-js的web应用&quot; class=&quot;headerlink&quot; title=&quot;一个基于node.js的web应用&quot;&gt;&lt;/a&gt;一个基于node.js的web应用&lt;/h1&gt;&lt;h2 id=&quot;web应用
+      &lt;h2 id=&quot;web应用的目标&quot;&gt;&lt;a href=&quot;#web应用的目标&quot; class=&quot;headerlink&quot; title=&quot;web应用的目标&quot;&gt;&lt;/a&gt;web应用的目标&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;用户可以通过浏览器使用。&lt;/li&gt;
+&lt;li&gt;当用户请求&lt;a href=&quot;http
     
     </summary>
     
@@ -299,13 +425,13 @@
   </entry>
   
   <entry>
-    <title>电子词典的安装</title>
+    <title>电子词典mdict的安装</title>
     <link href="http:/dannyzhaoo.github.io/2017/06/03/%E7%94%B5%E5%AD%90%E8%AF%8D%E5%85%B8%E7%9A%84%E5%AE%89%E8%A3%85/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/03/电子词典的安装/</id>
     <published>2017-06-03T02:26:53.000Z</published>
-    <updated>2017-06-06T12:09:01.277Z</updated>
+    <updated>2017-06-08T02:44:59.973Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="电子词典mdict的安装"><a href="#电子词典mdict的安装" class="headerlink" title="电子词典mdict的安装"></a>电子词典mdict的安装</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="下载好Mdict"><a href="#下载好Mdict" class="headerlink" title="下载好Mdict"></a>下载好Mdict</h3><p>在<a href="https://www.mdict.cn/wp/?page_id=5227&amp;lang=zh" target="_blank" rel="external">mdcit</a>上下载windows 1.3RC4</p>
+    <content type="html"><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="下载好Mdict"><a href="#下载好Mdict" class="headerlink" title="下载好Mdict"></a>下载好Mdict</h3><p>在<a href="https://www.mdict.cn/wp/?page_id=5227&amp;lang=zh" target="_blank" rel="external">mdcit</a>上下载windows 1.3RC4</p>
 <h3 id="下载词典包"><a href="#下载词典包" class="headerlink" title="下载词典包"></a>下载词典包</h3><p>词典包的资源地址:<a href="http://dwz/cn/527Bso" target="_blank" rel="external">http://dwz/cn/527Bso</a> 密码是：7rf3</p>
 <p>建议将上面所有的词典资源都下载下来</p>
 <h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="导入词库"><a href="#导入词库" class="headerlink" title="导入词库"></a>导入词库</h3><p>打开mdict.exe，然后点击上面菜单的<strong>词库</strong>，再点击<strong>词库管理</strong>，导入刚才下载好的词典包</p>
@@ -320,7 +446,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;电子词典mdict的安装&quot;&gt;&lt;a href=&quot;#电子词典mdict的安装&quot; class=&quot;headerlink&quot; title=&quot;电子词典mdict的安装&quot;&gt;&lt;/a&gt;电子词典mdict的安装&lt;/h1&gt;&lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;
+      &lt;h2 id=&quot;下载&quot;&gt;&lt;a href=&quot;#下载&quot; class=&quot;headerlink&quot; title=&quot;下载&quot;&gt;&lt;/a&gt;下载&lt;/h2&gt;&lt;h3 id=&quot;下载好Mdict&quot;&gt;&lt;a href=&quot;#下载好Mdict&quot; class=&quot;headerlink&quot; title=&quot;下载好Mdict&quot;
     
     </summary>
     
@@ -336,9 +462,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AFgit/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/配置客户端git/</id>
     <published>2017-06-02T10:30:21.000Z</published>
-    <updated>2017-06-06T12:10:13.446Z</updated>
+    <updated>2017-06-08T02:45:40.324Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="配置客户端git"><a href="#配置客户端git" class="headerlink" title="配置客户端git"></a>配置客户端git</h1><p>配置客户端git，让git可以push和pull</p>
+    <content type="html"><![CDATA[<p>配置客户端git，让git可以push和pull</p>
 <h2 id="设置名字和邮箱地址"><a href="#设置名字和邮箱地址" class="headerlink" title="设置名字和邮箱地址"></a>设置名字和邮箱地址</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git config --global user.name "John Doe"</div><div class="line"><span class="meta">$</span> git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
 <h2 id="生成一个新的ssh秘钥"><a href="#生成一个新的ssh秘钥" class="headerlink" title="生成一个新的ssh秘钥"></a>生成一个新的ssh秘钥</h2><p>打开 Git Bash，输入如下命令，然后连续按三个回车即可：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure>
@@ -348,8 +474,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;配置客户端git&quot;&gt;&lt;a href=&quot;#配置客户端git&quot; class=&quot;headerlink&quot; title=&quot;配置客户端git&quot;&gt;&lt;/a&gt;配置客户端git&lt;/h1&gt;&lt;p&gt;配置客户端git，让git可以push和pull&lt;/p&gt;
-&lt;h2 id=&quot;设置名字和邮箱地址
+      &lt;p&gt;配置客户端git，让git可以push和pull&lt;/p&gt;
+&lt;h2 id=&quot;设置名字和邮箱地址&quot;&gt;&lt;a href=&quot;#设置名字和邮箱地址&quot; class=&quot;headerlink&quot; title=&quot;设置名字和邮箱地址&quot;&gt;&lt;/a&gt;设置名字和邮箱地址&lt;/h2&gt;&lt;figure class
     
     </summary>
     
@@ -365,9 +491,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%AE%89%E8%A3%85mockjs/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/安装mockjs/</id>
     <published>2017-06-02T10:25:39.000Z</published>
-    <updated>2017-06-06T12:08:24.892Z</updated>
+    <updated>2017-06-08T02:44:37.909Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="安装、配置mockjs（ps：看文档还得再查，功力太浅！）"><a href="#安装、配置mockjs（ps：看文档还得再查，功力太浅！）" class="headerlink" title="安装、配置mockjs（ps：看文档还得再查，功力太浅！）"></a>安装、配置mockjs（ps：看文档还得再查，功力太浅！）</h1><p>首先配置安装</p>
+    <content type="html"><![CDATA[<p>首先配置安装</p>
 <h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#安装mock，这个只能在这个文件中使用</div><div class="line">npm install mockjs</div></pre></td></tr></table></figure>
 <p>​ 然后在这个文件夹中新建一个mock.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 使用 Mock</div><div class="line">var Mock = require(&apos;mockjs&apos;)</div><div class="line">var data = Mock.mock(&#123;</div><div class="line">    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素</div><div class="line">    &apos;list|1-10&apos;: [&#123;</div><div class="line">        // 属性 id 是一个自增数，起始值为 1，每次增 1</div><div class="line">        &apos;id|+1&apos;: 1</div><div class="line">    &#125;]</div><div class="line">&#125;)</div><div class="line">// 输出结果</div><div class="line">console.log(JSON.stringify(data, null, 4))</div></pre></td></tr></table></figure>
@@ -378,7 +504,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;安装、配置mockjs（ps：看文档还得再查，功力太浅！）&quot;&gt;&lt;a href=&quot;#安装、配置mockjs（ps：看文档还得再查，功力太浅！）&quot; class=&quot;headerlink&quot; title=&quot;安装、配置mockjs（ps：看文档还得再查，功力太浅！）&quot;&gt;&lt;/a
+      &lt;p&gt;首先配置安装&lt;/p&gt;
+&lt;h2 id=&quot;Node&quot;&gt;&lt;a href=&quot;#Node&quot; class=&quot;headerlink&quot; title=&quot;Node&quot;&gt;&lt;/a&gt;Node&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td clas
     
     </summary>
     
@@ -394,9 +521,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E3%80%8A%E5%B2%9B%E4%B8%8A%E4%B9%A6%E5%BA%97%E3%80%8B/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/《岛上书店》/</id>
     <published>2017-06-02T10:23:58.000Z</published>
-    <updated>2017-06-02T10:24:35.156Z</updated>
+    <updated>2017-06-08T02:44:01.014Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="《岛上书店》感受"><a href="#《岛上书店》感受" class="headerlink" title="《岛上书店》感受"></a>《岛上书店》感受</h1><p>这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。</p>
+    <content type="html"><![CDATA[<p>这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。</p>
 <p>这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。</p>
 <p>无论何时，无论遇到哪种困难，人生的道路从来不是一条，而人的一生也不会因为什么别的东西而停止，总是要一步一步走下去，纵然可能眼前的一切会让人感到失望或者说是绝望。而且，人生总会迎来转机，人的存在也是因为<strong>爱</strong>，不要轻易就舍弃。也不要轻易就下断言，因为人生真的充满变化。</p>
 <p>《岛上书店》读完，不会因为结局的不好而让人难过，反而会让我们对生活变得更有希望，因为书中各位角色也各自有各自的好与坏，也有各种各样的际遇，最重要的是在人生的谷底，总会有一束阳光温暖！</p>
@@ -404,7 +531,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;《岛上书店》感受&quot;&gt;&lt;a href=&quot;#《岛上书店》感受&quot; class=&quot;headerlink&quot; title=&quot;《岛上书店》感受&quot;&gt;&lt;/a&gt;《岛上书店》感受&lt;/h1&gt;&lt;p&gt;这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。&lt;/p
+      &lt;p&gt;这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。&lt;/p&gt;
+&lt;p&gt;这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。&lt;/p
     
     </summary>
     
@@ -420,9 +548,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%88%A9%E7%94%A8Timeout%E5%88%B6%E4%BD%9C%E5%AF%BC%E8%88%AA/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/利用Timeout制作导航/</id>
     <published>2017-06-02T10:20:41.000Z</published>
-    <updated>2017-06-06T12:09:52.066Z</updated>
+    <updated>2017-06-08T02:45:12.267Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="利用TimeOut制作导航"><a href="#利用TimeOut制作导航" class="headerlink" title="利用TimeOut制作导航"></a>利用TimeOut制作导航</h1><h2 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h2><ul>
+    <content type="html"><![CDATA[<h2 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h2><ul>
 <li><h3 id="首先用Emmet写出html文件的结构"><a href="#首先用Emmet写出html文件的结构" class="headerlink" title="首先用Emmet写出html文件的结构"></a>首先用<strong>Emmet</strong>写出html文件的结构</h3><p>div#nav&gt;ul&gt;(li&gt;a[href=”javascript::”]+div.subnav&gt;em.arrow+p&gt;span&gt;(a[href=”javascript”])<em>8)</em>8</p>
 <p><strong>好处：</strong></p>
 <p>​ 用Emmet写html速度很快，而且结构一目了然，在sublime中的快捷键是<code>ctrl + alt + enter</code>。</p>
@@ -455,7 +583,8 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;利用TimeOut制作导航&quot;&gt;&lt;a href=&quot;#利用TimeOut制作导航&quot; class=&quot;headerlink&quot; title=&quot;利用TimeOut制作导航&quot;&gt;&lt;/a&gt;利用TimeOut制作导航&lt;/h1&gt;&lt;h2 id=&quot;html部分&quot;&gt;&lt;a href=&quot;#htm
+      &lt;h2 id=&quot;html部分&quot;&gt;&lt;a href=&quot;#html部分&quot; class=&quot;headerlink&quot; title=&quot;html部分&quot;&gt;&lt;/a&gt;html部分&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;h3 id=&quot;首先用Emmet写出html文件的结构&quot;&gt;&lt;a href=&quot;#首先用Emmet写
     
     </summary>
     
