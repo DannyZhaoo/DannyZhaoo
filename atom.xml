@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-06-06T13:51:58.751Z</updated>
+  <updated>2017-06-08T01:04:29.491Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>代码的组织和部署</title>
+    <link href="http:/dannyzhaoo.github.io/2017/06/08/%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BB%84%E7%BB%87%E5%92%8C%E9%83%A8%E7%BD%B2/"/>
+    <id>http:/dannyzhaoo.github.io/2017/06/08/代码的组织和部署/</id>
+    <published>2017-06-08T01:04:29.000Z</published>
+    <updated>2017-06-08T01:04:29.491Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Latex入门笔记</title>
@@ -453,9 +467,9 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/Hexo博客搭建/</id>
     <published>2017-06-02T10:11:17.000Z</published>
-    <updated>2017-06-06T12:07:04.164Z</updated>
+    <updated>2017-06-08T01:07:42.245Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="Hexo博客搭建"><a href="#Hexo博客搭建" class="headerlink" title="Hexo博客搭建"></a>Hexo博客搭建</h1><h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs官网</a>下载对应系统的安装包，按提示安装</p>
+    <content type="html"><![CDATA[<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs官网</a>下载对应系统的安装包，按提示安装</p>
 <p>检视安装成功</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure>
 <h2 id="利用Hexo搭建博客"><a href="#利用Hexo搭建博客" class="headerlink" title="利用Hexo搭建博客"></a>利用Hexo搭建博客</h2><h3 id="创建博客目录"><a href="#创建博客目录" class="headerlink" title="创建博客目录"></a>创建博客目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init dannyzhaoo.github.io</div><div class="line">cd dannyzhaoo.github.io</div></pre></td></tr></table></figure>
@@ -469,7 +483,7 @@
 <h2 id="部署到GitHub上"><a href="#部署到GitHub上" class="headerlink" title="部署到GitHub上"></a>部署到GitHub上</h2><h3 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="external">hexo-deployer-git</a></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
 <h3 id="网站配置文件"><a href="#网站配置文件" class="headerlink" title="网站配置文件"></a>网站配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/DannyZhaoo/DannyZhaoo.github.io</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
 <h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="添加标签，分类"><a href="#添加标签，分类" class="headerlink" title="添加标签，分类"></a>添加标签，分类</h2><h2 id="6-1-网站的配置文件"><a href="#6-1-网站的配置文件" class="headerlink" title="6.1 网站的配置文件"></a>6.1 网站的配置文件</h2><p>一般下载下来就不用改了，都包含着</p>
+<h2 id="添加标签，分类"><a href="#添加标签，分类" class="headerlink" title="添加标签，分类"></a>添加标签，分类</h2><h2 id="网站的配置文件"><a href="#网站的配置文件" class="headerlink" title="网站的配置文件"></a>网站的配置文件</h2><p>一般下载下来就不用改了，都包含着</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div></pre></td></tr></table></figure>
 <h3 id="主题的配置文件"><a href="#主题的配置文件" class="headerlink" title="主题的配置文件"></a>主题的配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories</div><div class="line">  archives: /archives</div><div class="line">  tags: /tags</div><div class="line">  about: /about</div></pre></td></tr></table></figure>
 <h3 id="新建tags和categories页面"><a href="#新建tags和categories页面" class="headerlink" title="新建tags和categories页面"></a>新建tags和categories页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new page tags</div><div class="line">hexo new page categories</div></pre></td></tr></table></figure>
@@ -493,7 +507,7 @@
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Hexo博客搭建&quot;&gt;&lt;a href=&quot;#Hexo博客搭建&quot; class=&quot;headerlink&quot; title=&quot;Hexo博客搭建&quot;&gt;&lt;/a&gt;Hexo博客搭建&lt;/h1&gt;&lt;h2 id=&quot;安装nodejs&quot;&gt;&lt;a href=&quot;#安装nodejs&quot; class=&quot;head
+      &lt;h2 id=&quot;安装nodejs&quot;&gt;&lt;a href=&quot;#安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;安装nodejs&quot;&gt;&lt;/a&gt;安装nodejs&lt;/h2&gt;&lt;p&gt;去&lt;a href=&quot;https://nodejs.org/en/download/&quot; tar
     
     </summary>
     
