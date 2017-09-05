@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-09-04T01:56:30.000Z</updated>
+  <updated>2017-09-05T01:57:10.000Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -16,11 +16,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>JavaScript规范</title>
+    <link href="http:/dannyzhaoo.github.io/2017/09/05/JavaScript%E8%A7%84%E8%8C%83/"/>
+    <id>http:/dannyzhaoo.github.io/2017/09/05/JavaScript规范/</id>
+    <published>2017-09-05T01:21:59.000Z</published>
+    <updated>2017-09-05T01:57:10.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>进入公司学习，平时最大的问题除了自己需要学习很多东西外，就是各种代码的缩进和空格等问题。所以在此记录一下自己一直出错的问题。</p>
+<h1 id="三元运算符"><a href="#三元运算符" class="headerlink" title="三元运算符"></a>三元运算符</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 三元运算符由3部分组成，因此其换行应当根据每个部分的长度不同，形成不同的情况。</span></div><div class="line"><span class="keyword">var</span> result = thisIsAVeryVeryLongCondition</div><div class="line">    ? resultA : resultB;</div><div class="line"></div><div class="line"><span class="keyword">var</span> result = condition</div><div class="line">    ? thisIsAVeryVeryLongResult</div><div class="line">    : resultB;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;进入公司学习，平时最大的问题除了自己需要学习很多东西外，就是各种代码的缩进和空格等问题。所以在此记录一下自己一直出错的问题。&lt;/p&gt;
+&lt;h1 id=&quot;三元运算符&quot;&gt;&lt;a href=&quot;#三元运算符&quot; class=&quot;headerlink&quot; title=&quot;三元运算符&quot;&gt;&lt;/a&gt;三
+    
+    </summary>
+    
+      <category term="前端标准/规范" scheme="http:/dannyzhaoo.github.io/categories/%E5%89%8D%E7%AB%AF%E6%A0%87%E5%87%86-%E8%A7%84%E8%8C%83/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo利用不同分支在不同的电脑上写作</title>
+    <link href="http:/dannyzhaoo.github.io/2017/09/04/hexo%E5%88%A9%E7%94%A8%E4%B8%8D%E5%90%8C%E5%88%86%E6%94%AF%E5%9C%A8%E4%B8%8D%E5%90%8C%E7%9A%84%E7%94%B5%E8%84%91%E4%B8%8A%E5%86%99%E4%BD%9C/"/>
+    <id>http:/dannyzhaoo.github.io/2017/09/04/hexo利用不同分支在不同的电脑上写作/</id>
+    <published>2017-09-04T10:20:19.000Z</published>
+    <updated>2017-09-05T11:34:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>我在面对这个问题的时候，其实考虑过放弃GitHub Page，去转而用更方便的现成的博客平台。然而经过对比，还有结合我这个写博客的特点，其实还是用<strong>markdown</strong>最方便。</p>
+<p>还有毕竟自己是个程序员，什么都是自己可控的，这对自己还是有不小的吸引力的。</p>
+<p>当时我的情况是：</p>
+<p>我一直在windows上写东西，但是最近我到公司发了新的电脑，我在GitHub Page上的是用hexo生成后的代码。这样就算我clone下来，也没有自己原来配置的内容。</p>
+<p>这样的情况下，我在网上查到可以用这个仓库的另外一个分支保存源码的方式。我就照着做了，大概用了两三个小时，踩了不少坑。</p>
+<ol>
+<li><p>在本地新建一个分支。</p>
+</li>
+<li><p>把这个分支推到GitHub上。<br>当然在这个之前，你得确保把这个文件夹都<code>git init</code>过了，而且添加了<code>git remote</code>。</p>
+</li>
+<li><p>把这个新建的分支设置成默认分支。</p>
+</li>
+</ol>
+<p>在新的电脑上</p>
+<ol>
+<li>从clone这个仓库</li>
+<li><p>用npm下载hexo-cli，hexo，hexo-deployer-git</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div><div class="line">npm install hexo</div><div class="line">npm install</div><div class="line">npm install hexo-deployer-git –-save</div></pre></td></tr></table></figure>
+</li>
+<li><p>切记下载主题git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">https://github.com/iissnan/hexo-theme-next</a> themes/next</p>
+</li>
+<li>按照需要<strong>设置主题</strong>，这个不会在git上有记录。</li>
+</ol>
+<p>最后切记自己遇到问题，不要一切就真的推翻重做，其实再查查就成功了。或者倒退几步，但是真的不用全部重新来过。</p>
+<p>这个步骤是我后来总结的，我自己做的时候一直有问题，然后就一直查。而且每个电脑环境不同，遇到的问题也不同，一定不要全部推翻重做！！！</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我在面对这个问题的时候，其实考虑过放弃GitHub Page，去转而用更方便的现成的博客平台。然而经过对比，还有结合我这个写博客的特点，其实还是用&lt;strong&gt;markdown&lt;/strong&gt;最方便。&lt;/p&gt;
+&lt;p&gt;还有毕竟自己是个程序员，什么都是自己可控的，这对自己还
+    
+    </summary>
+    
+      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
+    
+      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ps技能---切图</title>
     <link href="http:/dannyzhaoo.github.io/2017/06/11/ps%E6%8A%80%E8%83%BD-%E5%88%87%E5%9B%BE/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/11/ps技能-切图/</id>
     <published>2017-06-11T02:37:48.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:43:52.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ol>
 <li>从psd中 <strong>获取</strong>网页前端开发过程中所需要的资源。</li>
@@ -38,10 +111,10 @@
     
     </summary>
     
-      <category term="interesting" scheme="http:/dannyzhaoo.github.io/categories/interesting/"/>
+      <category term="切页面" scheme="http:/dannyzhaoo.github.io/categories/%E5%88%87%E9%A1%B5%E9%9D%A2/"/>
     
     
-      <category term="ps" scheme="http:/dannyzhaoo.github.io/tags/ps/"/>
+      <category term="Photoshop" scheme="http:/dannyzhaoo.github.io/tags/Photoshop/"/>
     
   </entry>
   
@@ -50,7 +123,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/08/%E5%AE%89%E8%A3%85Gitbook/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/08/安装Gitbook/</id>
     <published>2017-06-08T13:25:35.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:35:11.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="Gitbook安装"><a href="#Gitbook安装" class="headerlink" title="Gitbook安装"></a>Gitbook安装</h2><p>安装gitbook的前提是已经安装过nodejs</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//安装gitbook</div><div class="line">D:&gt; npm install gitbook-cli -g</div><div class="line">//验证</div><div class="line">D:&gt;	gitbook -v</div></pre></td></tr></table></figure>
@@ -123,7 +196,7 @@
     
     </summary>
     
-      <category term="gitbook" scheme="http:/dannyzhaoo.github.io/categories/gitbook/"/>
+      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="gitbook" scheme="http:/dannyzhaoo.github.io/tags/gitbook/"/>
@@ -135,7 +208,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/08/%E4%BB%A3%E7%A0%81%E7%9A%84%E7%BB%84%E7%BB%87%E5%92%8C%E9%83%A8%E7%BD%B2/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/08/代码的组织和部署/</id>
     <published>2017-06-08T01:04:29.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:37:22.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用NodeJS编写程序前，为了有个良好的开端，首先需要准备好代码的目录结构和部署方式。</p>
 <h2 id="模块路径解析规则"><a href="#模块路径解析规则" class="headerlink" title="模块路径解析规则"></a>模块路径解析规则</h2><p><code>require</code>函数支持绝对路径、也支持相对路径。但是这两种路径在模块之间建立了强耦合关系，一点某个模块文件的存放位置需要变更，使用该模块的其他模块的代码也需要跟着调整。因此，<code>require</code>函数支持第三种形式的路径，写法类似于<code>foo/bar</code>，并依次按照以下规则解析路径，直到找到模块的位置。</p>
@@ -254,10 +327,10 @@
     
     </summary>
     
-      <category term="nodejs" scheme="http:/dannyzhaoo.github.io/categories/nodejs/"/>
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="七天学会NodeJS" scheme="http:/dannyzhaoo.github.io/tags/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%BC%9ANodeJS/"/>
+      <category term="NodeJS" scheme="http:/dannyzhaoo.github.io/tags/NodeJS/"/>
     
   </entry>
   
@@ -266,7 +339,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/06/Latex%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/06/Latex入门笔记/</id>
     <published>2017-06-06T12:20:23.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:43:07.000Z</updated>
     
     <content type="html"><![CDATA[<p>因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。</p>
 <h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>在ctex.org下载ctex套装(203Mb或1.3Gb)（含MikTeX及WinEdt），等着下载好了之后，就一步一步安装。</p>
@@ -345,8 +418,10 @@
     
     </summary>
     
-      <category term="Latex" scheme="http:/dannyzhaoo.github.io/categories/Latex/"/>
+      <category term="软技能" scheme="http:/dannyzhaoo.github.io/categories/%E8%BD%AF%E6%8A%80%E8%83%BD/"/>
     
+    
+      <category term="Latex" scheme="http:/dannyzhaoo.github.io/tags/Latex/"/>
     
   </entry>
   
@@ -355,7 +430,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/06/NodeJS%E5%9F%BA%E7%A1%80/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/06/NodeJS基础/</id>
     <published>2017-06-06T11:23:18.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:43:26.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="什么是NodeJS"><a href="#什么是NodeJS" class="headerlink" title="什么是NodeJS"></a>什么是NodeJS</h2><p>JS是脚本原因，脚本语言都需要一个解析器才能运行。</p>
 <p>每个解析器都是一个运行环境，不但允许JS定义各种数据结构，进行各种计算，还允许JS使用运行环境提供的内置对象和方法做一些事情。例如浏览器中JS要操作DOM，浏览器就提供<code>document</code>之类的内置对象。而NodeJS就是要操作磁盘文件或搭建HTTP服务，nodeJS就提供<code>fs</code>、<code>http</code>等内置对象。</p>
@@ -379,10 +454,10 @@
     
     </summary>
     
-      <category term="nodejs" scheme="http:/dannyzhaoo.github.io/categories/nodejs/"/>
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="七天学会NodeJS" scheme="http:/dannyzhaoo.github.io/tags/%E4%B8%83%E5%A4%A9%E5%AD%A6%E4%BC%9ANodeJS/"/>
+      <category term="NodeJS" scheme="http:/dannyzhaoo.github.io/tags/NodeJS/"/>
     
   </entry>
   
@@ -391,7 +466,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/05/HTML5-CSS3%E5%AE%9E%E7%8E%B0%E6%98%A5%E8%8A%82%E8%B4%BA%E5%8D%A1/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/05/HTML5-CSS3实现春节贺卡/</id>
     <published>2017-06-05T10:37:39.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:42:35.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h2><ul>
 <li>根据设计稿对项目进行整套项目的需求进行剖析并开发。</li>
@@ -441,10 +516,12 @@
     
     </summary>
     
-      <category term="前端实践" scheme="http:/dannyzhaoo.github.io/categories/%E5%89%8D%E7%AB%AF%E5%AE%9E%E8%B7%B5/"/>
+      <category term="移动终端" scheme="http:/dannyzhaoo.github.io/categories/%E7%A7%BB%E5%8A%A8%E7%BB%88%E7%AB%AF/"/>
     
     
-      <category term="phone" scheme="http:/dannyzhaoo.github.io/tags/phone/"/>
+      <category term="HTML5" scheme="http:/dannyzhaoo.github.io/tags/HTML5/"/>
+    
+      <category term="CSS3" scheme="http:/dannyzhaoo.github.io/tags/CSS3/"/>
     
   </entry>
   
@@ -453,7 +530,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/03/%E4%B8%80%E4%B8%AA%E5%9F%BA%E4%BA%8Enode-js%E7%9A%84web%E5%BA%94%E7%94%A8/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/03/一个基于node-js的web应用/</id>
     <published>2017-06-03T05:57:13.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:40:44.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="web应用的目标"><a href="#web应用的目标" class="headerlink" title="web应用的目标"></a>web应用的目标</h2><ul>
 <li>用户可以通过浏览器使用。</li>
@@ -532,10 +609,10 @@
     
     </summary>
     
-      <category term="nodejs" scheme="http:/dannyzhaoo.github.io/categories/nodejs/"/>
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
     
     
-      <category term="web应用" scheme="http:/dannyzhaoo.github.io/tags/web%E5%BA%94%E7%94%A8/"/>
+      <category term="NodeJS" scheme="http:/dannyzhaoo.github.io/tags/NodeJS/"/>
     
   </entry>
   
@@ -544,7 +621,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/03/%E7%94%B5%E5%AD%90%E8%AF%8D%E5%85%B8%E7%9A%84%E5%AE%89%E8%A3%85/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/03/电子词典的安装/</id>
     <published>2017-06-03T02:26:53.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:38:15.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><h3 id="下载好Mdict"><a href="#下载好Mdict" class="headerlink" title="下载好Mdict"></a>下载好Mdict</h3><p>在<a href="https://www.mdict.cn/wp/?page_id=5227&amp;lang=zh" target="_blank" rel="external">mdcit</a>上下载windows 1.3RC4</p>
 <h3 id="下载词典包"><a href="#下载词典包" class="headerlink" title="下载词典包"></a>下载词典包</h3><p>词典包的资源地址:<a href="http://dwz/cn/527Bso" target="_blank" rel="external">http://dwz/cn/527Bso</a> 密码是：7rf3</p>
@@ -565,10 +642,12 @@
     
     </summary>
     
-      <category term="English" scheme="http:/dannyzhaoo.github.io/categories/English/"/>
+      <category term="阅读" scheme="http:/dannyzhaoo.github.io/categories/%E9%98%85%E8%AF%BB/"/>
     
     
       <category term="mdict" scheme="http:/dannyzhaoo.github.io/tags/mdict/"/>
+    
+      <category term="English" scheme="http:/dannyzhaoo.github.io/tags/English/"/>
     
   </entry>
   
@@ -577,7 +656,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AFgit/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/配置客户端git/</id>
     <published>2017-06-02T10:30:21.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:40:17.000Z</updated>
     
     <content type="html"><![CDATA[<p>配置客户端git，让git可以push和pull</p>
 <h2 id="设置名字和邮箱地址"><a href="#设置名字和邮箱地址" class="headerlink" title="设置名字和邮箱地址"></a>设置名字和邮箱地址</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git config --global user.name "John Doe"</div><div class="line"><span class="meta">$</span> git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
@@ -594,7 +673,7 @@
     
     </summary>
     
-      <category term="git" scheme="http:/dannyzhaoo.github.io/categories/git/"/>
+      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
@@ -606,7 +685,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%AE%89%E8%A3%85mockjs/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/安装mockjs/</id>
     <published>2017-06-02T10:25:39.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:36:37.000Z</updated>
     
     <content type="html"><![CDATA[<p>首先配置安装</p>
 <h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#安装mock，这个只能在这个文件中使用</div><div class="line">npm install mockjs</div></pre></td></tr></table></figure>
@@ -624,7 +703,7 @@
     
     </summary>
     
-      <category term="interesting" scheme="http:/dannyzhaoo.github.io/categories/interesting/"/>
+      <category term="前端框架/库" scheme="http:/dannyzhaoo.github.io/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6-%E5%BA%93/"/>
     
     
       <category term="mockjs" scheme="http:/dannyzhaoo.github.io/tags/mockjs/"/>
@@ -636,7 +715,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E3%80%8A%E5%B2%9B%E4%B8%8A%E4%B9%A6%E5%BA%97%E3%80%8B/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/《岛上书店》/</id>
     <published>2017-06-02T10:23:58.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:34:35.000Z</updated>
     
     <content type="html"><![CDATA[<p>这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。</p>
 <p>这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。</p>
@@ -651,10 +730,10 @@
     
     </summary>
     
-      <category term="books" scheme="http:/dannyzhaoo.github.io/categories/books/"/>
+      <category term="阅读" scheme="http:/dannyzhaoo.github.io/categories/%E9%98%85%E8%AF%BB/"/>
     
     
-      <category term="reading" scheme="http:/dannyzhaoo.github.io/tags/reading/"/>
+      <category term="小说" scheme="http:/dannyzhaoo.github.io/tags/%E5%B0%8F%E8%AF%B4/"/>
     
   </entry>
   
@@ -663,7 +742,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%88%A9%E7%94%A8Timeout%E5%88%B6%E4%BD%9C%E5%AF%BC%E8%88%AA/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/利用Timeout制作导航/</id>
     <published>2017-06-02T10:20:41.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:40:00.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h2><ul>
 <li><h3 id="首先用Emmet写出html文件的结构"><a href="#首先用Emmet写出html文件的结构" class="headerlink" title="首先用Emmet写出html文件的结构"></a>首先用<strong>Emmet</strong>写出html文件的结构</h3><p>div#nav&gt;ul&gt;(li&gt;a[href=”javascript::”]+div.subnav&gt;em.arrow+p&gt;span&gt;(a[href=”javascript”])<em>8)</em>8</p>
@@ -703,6 +782,14 @@
     
     </summary>
     
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="JavaScript" scheme="http:/dannyzhaoo.github.io/tags/JavaScript/"/>
+    
+      <category term="HTML" scheme="http:/dannyzhaoo.github.io/tags/HTML/"/>
+    
+      <category term="CSS" scheme="http:/dannyzhaoo.github.io/tags/CSS/"/>
     
   </entry>
   
@@ -711,7 +798,7 @@
     <link href="http:/dannyzhaoo.github.io/2017/06/02/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
     <id>http:/dannyzhaoo.github.io/2017/06/02/Hexo博客搭建/</id>
     <published>2017-06-02T10:11:17.000Z</published>
-    <updated>2017-09-04T01:56:30.000Z</updated>
+    <updated>2017-09-05T11:44:44.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs官网</a>下载对应系统的安装包，按提示安装</p>
 <p>检视安装成功</p>
@@ -755,7 +842,7 @@
     
     </summary>
     
-      <category term="interesting" scheme="http:/dannyzhaoo.github.io/categories/interesting/"/>
+      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
       <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
