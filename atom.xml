@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-09-05T01:57:10.000Z</updated>
+  <updated>2017-09-05T12:04:18.000Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,40 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>进度审核</title>
+    <link href="http:/dannyzhaoo.github.io/2017/09/05/%E8%BF%9B%E5%BA%A6%E5%AE%A1%E6%A0%B8/"/>
+    <id>http:/dannyzhaoo.github.io/2017/09/05/进度审核/</id>
+    <published>2017-09-05T11:56:07.000Z</published>
+    <updated>2017-09-05T12:04:18.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>每个周五离开公司之前，产品经理和技术部门一定都会过一下进度。我刚来，不知道为什么做这个，有时候还会觉得很麻烦。但是最近的阅读的书让我渐渐明白这个的作用。</p>
+<p>在此写下来，以后再发现再补充。</p>
+<ol>
+<li>了解最新进展</li>
+<li>确定技术点不遗漏</li>
+<li>评估风险点</li>
+</ol>
+<p>产品不是技术，不能对所有的内容都面面俱到，同时也需要大家相互了解一下进度，了解团队情况。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每个周五离开公司之前，产品经理和技术部门一定都会过一下进度。我刚来，不知道为什么做这个，有时候还会觉得很麻烦。但是最近的阅读的书让我渐渐明白这个的作用。&lt;/p&gt;
+&lt;p&gt;在此写下来，以后再发现再补充。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;了解最新进展&lt;/li&gt;
+&lt;li&gt;确定技术点不遗漏
+    
+    </summary>
+    
+      <category term="软技能" scheme="http:/dannyzhaoo.github.io/categories/%E8%BD%AF%E6%8A%80%E8%83%BD/"/>
+    
+    
+      <category term="团队沟通" scheme="http:/dannyzhaoo.github.io/tags/%E5%9B%A2%E9%98%9F%E6%B2%9F%E9%80%9A/"/>
+    
+  </entry>
   
   <entry>
     <title>JavaScript规范</title>
