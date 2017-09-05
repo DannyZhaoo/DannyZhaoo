@@ -1,8 +1,10 @@
 ---
 title: HTML5+CSS3实现春节贺卡
 date: 2017-06-05 18:37:39
-tags: phone
-categories: 前端实践
+tags: 
+- HTML5
+- CSS3
+categories: 移动终端
 ---
 
 ## 目标

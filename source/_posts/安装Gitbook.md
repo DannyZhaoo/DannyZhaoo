@@ -2,7 +2,7 @@
 title: 安装Gitbook
 date: 2017-06-08 21:25:35
 tags: gitbook
-categories: gitbook
+categories: 开发工具
 ---
 
 ## Gitbook安装
@@ -96,9 +96,9 @@ gitbook serve ./
 **ps:如果本地没有git初始化过得仓库，则可以将在线建立的仓库，克隆到本地，进行修改，提交，push，简洁步骤如下:**
 
 1.  首先进入想要建立书籍的目录，这里是E:\gitbook\gitbook-studying；
-2. 运行命令`git clone https://git.gitbook.com/yuzeshan/gitbook-studying.git`;
-3. 然后，通过之前介绍的书籍编辑:gitbook init,gitbook serve 等方法，编辑好书籍后，再用git命令add commit添加提交书籍目录文件；
-4. 最后，`git push gitbook master`即可。
+2.  运行命令`git clone https://git.gitbook.com/yuzeshan/gitbook-studying.git`;
+3.  然后，通过之前介绍的书籍编辑:gitbook init,gitbook serve 等方法，编辑好书籍后，再用git命令add commit添加提交书籍目录文件；
+4.  最后，`git push gitbook master`即可。
 
 ### 发布到github仓库
 
@@ -107,7 +107,7 @@ gitbook serve ./
 3. 进入到这个`gitbook-studying`文件里。
 4. 到Gitbook.com页面，将书籍的 Git 项目设置为 GitHub 上的项目。
 5. 保存后，可以看到之前不可点击的 "Add a deployment webhook" 按钮已经可以点击了，这个按钮表示：每当用户配置的 GitHub 上的项目更新时，自动更新Gitbook.com书籍
-6.  将之前编辑的书籍目录为`E:\gitbook\gitbook-studying`中除.git文件，全部拷贝到克隆的目录中，即`E:\gitbook\gitbook-studying-github\gitbook-studying`中；
+6. 将之前编辑的书籍目录为`E:\gitbook\gitbook-studying`中除.git文件，全部拷贝到克隆的目录中，即`E:\gitbook\gitbook-studying-github\gitbook-studying`中；
 7. 将已经编辑好的书籍文件，用git add/commit命令依次添加，提交后;
 8. 接下来将书籍仓库与远程github连接到一起，运行命令:`git remote add github https://github.com//yuzeshan/gitbook-studying.git`(注意:并不是`git remote add origin https://github.com:yuzeshan/gitbook-studying.git`,也许不运行此命令也可，因为克隆的文件本身就关联了，未尝试。。。)；
 9. 最后，将书籍仓库push到github仓库上，运行命令：`git push -u github master`;

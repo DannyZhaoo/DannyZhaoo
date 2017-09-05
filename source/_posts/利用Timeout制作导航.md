@@ -2,7 +2,10 @@
 title: 利用Timeout制作导航
 date: 2017-06-02 18:20:41
 tags:
-categories:
+- JavaScript
+- HTML
+- CSS
+categories: 编程语言
 ---
 
 ## html部分

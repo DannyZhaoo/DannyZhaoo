@@ -1,8 +1,8 @@
 ---
 title: ps技能---切图
 date: 2017-06-11 10:37:48
-tags: ps
-categories: interesting
+tags: Photoshop
+categories: 切页面
 ---
 
 ## 目标

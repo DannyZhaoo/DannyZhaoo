@@ -1,8 +1,8 @@
 ---
 title: 一个基于node.js的web应用
 date: 2017-06-03 13:57:13
-tags: web应用
-categories: nodejs
+tags: NodeJS
+categories: 编程语言
 ---
 
 ## web应用的目标

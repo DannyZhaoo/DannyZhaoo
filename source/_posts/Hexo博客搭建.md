@@ -4,7 +4,7 @@ date: 2017-06-02 18:11:17
 tags: 
 - hexo
 categories: 
-- interesting
+- 开发工具
 ---
 
 ## 安装nodejs

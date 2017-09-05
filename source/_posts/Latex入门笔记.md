@@ -2,7 +2,8 @@
 title: Latex入门笔记
 date: 2017-06-06 20:20:23
 tags: 
-categories: Latex
+- Latex
+categories: 软技能
 ---
 
 因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。

@@ -2,7 +2,7 @@
 title: 配置客户端git
 date: 2017-06-02 18:30:21
 tags: git
-categories: git
+categories: 开发工具
 ---
 
 配置客户端git，让git可以push和pull

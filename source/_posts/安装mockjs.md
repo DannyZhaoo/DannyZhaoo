@@ -2,7 +2,7 @@
 title: 安装mockjs
 date: 2017-06-02 18:25:39
 tags: mockjs
-categories: interesting
+categories: 前端框架/库
 ---
 
 首先配置安装

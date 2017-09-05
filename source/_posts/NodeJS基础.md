@@ -1,8 +1,8 @@
 ---
 title: NodeJS基础
 date: 2017-06-06 19:23:18
-tags: 七天学会NodeJS
-categories: nodejs
+tags: NodeJS
+categories: 编程语言
 ---
 
 ## 什么是NodeJS
