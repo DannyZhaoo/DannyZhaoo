@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-09-06T03:19:21.000Z</updated>
+  <updated>2017-09-12T09:14:02.000Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git版本回退</title>
+    <link href="http:/dannyzhaoo.github.io/2017/09/12/git%E7%89%88%E6%9C%AC%E5%9B%9E%E9%80%80/"/>
+    <id>http:/dannyzhaoo.github.io/2017/09/12/git版本回退/</id>
+    <published>2017-09-12T07:56:26.000Z</published>
+    <updated>2017-09-12T09:14:02.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h1><p>回退git的版本提交的commit</p>
+<p>参数:</p>
+<p>—soft: 只改变本地仓库的提交点，而暂存区和工作区都不改变</p>
+<p>—mixed: 改变本地仓库和暂存区，工作区不变</p>
+<p>—hard: 本地仓库、暂存区、工作区全部改变</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>回退最新的修改</div><div class="line">git reset --hard HEAD^</div><div class="line">git reset --hard HEAD~3</div><div class="line"><span class="meta">#</span>回退哈希值为3628164...的修改，注意3628164...之后的也被改变</div><div class="line">git reset --hard 3628164</div></pre></td></tr></table></figure>
+<h1 id="revert"><a href="#revert" class="headerlink" title="revert"></a>revert</h1><p>回退git的版本，并把这次的回退作为一次修改提交。</p>
+<p>用法同reset</p>
+<h1 id="远程仓库回退"><a href="#远程仓库回退" class="headerlink" title="远程仓库回退"></a>远程仓库回退</h1><ol>
+<li>在本地用resert，然后提交到远程仓库。（推荐）</li>
+<li>在本地用reset，然后用<code>git push --force</code>。</li>
+<li>在本地用reset，然后用删除远程的master分支<code>git push origin :master</code>，重建master分支<code>git push origin master</code>。</li>
+</ol>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>如果回退之后，又觉得以前写的是正确的，这次的回退是误操作，那怎么办呢?</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span>查看自己的电脑上的操作哈希值</div><div class="line"><span class="meta">$</span> git reflog</div><div class="line"><span class="meta">#</span>再重新调整git的HEAD</div><div class="line"><span class="meta">$</span> git reset --hard a123456</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;reset&quot;&gt;&lt;a href=&quot;#reset&quot; class=&quot;headerlink&quot; title=&quot;reset&quot;&gt;&lt;/a&gt;reset&lt;/h1&gt;&lt;p&gt;回退git的版本提交的commit&lt;/p&gt;
+&lt;p&gt;参数:&lt;/p&gt;
+&lt;p&gt;—soft: 只改变本地仓库的提交点，而暂存
+    
+    </summary>
+    
+      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>浏览器调试</title>
+    <link href="http:/dannyzhaoo.github.io/2017/09/11/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E8%AF%95/"/>
+    <id>http:/dannyzhaoo.github.io/2017/09/11/浏览器调试/</id>
+    <published>2017-09-11T10:48:25.000Z</published>
+    <updated>2017-09-11T11:07:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天在写CKeditor的插件时，有一个问题一直报错，而只是单纯用<code>console.log</code>已经不管用了。</p>
+<p>所以就问了一下，下面记录一下。</p>
+<ol>
+<li>简单的就是在文本中添加<code>console.log</code>，查看相应的值。一般这种适应于<strong>非引用类型</strong>来检查。</li>
+<li>结合浏览器的<code>console</code>，查看报错的地方在哪些地方。在相应的地方（即source下），加上断点，结合右边<strong>watch</strong>、<strong>call</strong> <strong>stack</strong>、<strong>scope</strong>来进行查看。</li>
+<li>跟后端的交互时，在network下就很管用。Headers下面的general和response是服务器对后端的返回。属于http协议部分。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天在写CKeditor的插件时，有一个问题一直报错，而只是单纯用&lt;code&gt;console.log&lt;/code&gt;已经不管用了。&lt;/p&gt;
+&lt;p&gt;所以就问了一下，下面记录一下。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;简单的就是在文本中添加&lt;code&gt;console.log&lt;/code&gt;，
+    
+    </summary>
+    
+      <category term="Chrome" scheme="http:/dannyzhaoo.github.io/categories/Chrome/"/>
+    
+    
+      <category term="调试工具" scheme="http:/dannyzhaoo.github.io/tags/%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>ES6部分知识点</title>
