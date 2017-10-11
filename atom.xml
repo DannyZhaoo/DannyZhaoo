@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-09-12T09:14:02.000Z</updated>
+  <updated>2017-10-11T09:40:33.000Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,120 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>javaScript编码</title>
+    <link href="http:/dannyzhaoo.github.io/2017/10/11/javaScript%E7%BC%96%E7%A0%81/"/>
+    <id>http:/dannyzhaoo.github.io/2017/10/11/javaScript编码/</id>
+    <published>2017-10-11T09:10:21.000Z</published>
+    <updated>2017-10-11T09:40:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>javascript 的编码一般有三个，但是常用的是后面两种。</p>
+<ol>
+<li>escape()、unescape()</li>
+</ol>
+<p>这个是对字符串的编码，会返回一个字符的Unicode编码值。</p>
+<p>escape()这个函数不对“+”编码，因为在提交表单的时候，空格会被转化为+字符。</p>
+<p>这个函数现在已经不提倡使用。</p>
+<ol>
+<li>encodeURl()、decodeURl()</li>
+</ol>
+<p>对URL其中的某些字符将被十六进制的转义序列进行替换，不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：;/?:@&amp;=+$,’#。</p>
+<ol>
+<li>encodeURlComponent()、decodeURlComponent()</li>
+</ol>
+<p>对URL其中的某些字符将被十六进制的转义序列进行替换，同时也能编码：;/?:@&amp;=+$,’#这些特殊字符。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;javascript 的编码一般有三个，但是常用的是后面两种。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;escape()、unescape()&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这个是对字符串的编码，会返回一个字符的Unicode编码值。&lt;/p&gt;
+&lt;p&gt;escape()这个函数不对“+”编码，
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="JavaScript" scheme="http:/dannyzhaoo.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Date对象的处理技巧</title>
+    <link href="http:/dannyzhaoo.github.io/2017/10/11/Date%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%A4%84%E7%90%86%E6%8A%80%E5%B7%A7/"/>
+    <id>http:/dannyzhaoo.github.io/2017/10/11/Date对象的处理技巧/</id>
+    <published>2017-10-11T06:14:44.000Z</published>
+    <updated>2017-10-11T09:25:21.000Z</updated>
+    
+    <content type="html"><![CDATA[<ul>
+<li>获取当前所属的季度</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getSeason</span> (<span class="params">month</span>) </span>&#123;</div><div class="line">  	<span class="comment">//Math.ceil是向上取整</span></div><div class="line">  	<span class="keyword">return</span> <span class="built_in">Math</span>.ceil((month + <span class="number">1</span>) / <span class="number">3</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>判断一个数据是否为日期对象</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Object</span>.prototype.toString.call(dateObj) !== <span class="string">'[object Date]'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>获取某年二月份的最后一天</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 方法一</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>, <span class="number">2</span>, <span class="number">0</span>);</div><div class="line"><span class="comment">// 方法二 60 * 60 * 24 * 1000</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>, <span class="number">2</span>, <span class="number">1</span>) - <span class="number">86400000</span>;</div><div class="line"><span class="comment">// 方法三</span></div><div class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2017</span>, <span class="number">2</span>, <span class="number">1</span>);</div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(date.setDate(date.getDate() - <span class="number">1</span>));</div></pre></td></tr></table></figure>
+<ul>
+<li>获取当天时间的起始时间</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> now = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line"><span class="comment">// 方法一 getMonth()得到的月份比正常少一</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(now.getFullYear() + <span class="string">'-'</span> + (now.getMonth() + <span class="number">1</span>) + <span class="string">'-'</span> + now.getDate() + <span class="string">':00:00:00'</span>);</div><div class="line"><span class="comment">// 方法二</span></div><div class="line"><span class="keyword">new</span> <span class="built_in">Date</span>(now.getFullYear(), now.getMonth(), now.getDate());</div><div class="line"><span class="comment">// 方法3</span></div><div class="line"><span class="keyword">import</span> date <span class="keyword">from</span> <span class="string">'fecha'</span>;</div><div class="line">fecha.parse(<span class="keyword">new</span> <span class="built_in">Date</span>().toString(), <span class="string">'yyyy-MM-dd'</span>);</div></pre></td></tr></table></figure>
+<p><em>注意：学习JavaScript的处理函数可以看fecha的源码。</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;获取当前所属的季度&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;l
+    
+    </summary>
+    
+      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
+    
+    
+      <category term="JavaScript" scheme="http:/dannyzhaoo.github.io/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阅读vue代码</title>
+    <link href="http:/dannyzhaoo.github.io/2017/10/10/%E9%98%85%E8%AF%BBvue%E4%BB%A3%E7%A0%81/"/>
+    <id>http:/dannyzhaoo.github.io/2017/10/10/阅读vue代码/</id>
+    <published>2017-10-10T08:02:02.000Z</published>
+    <updated>2017-10-10T12:42:53.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>从今天开始我的目标就是读懂我们的公司项目的代码，在这里记录一下自己的阅读代码总结。</p>
+<ol>
+<li>首先是，先看一下<strong>线上作品</strong>，明白各部分的功能需求。（不懂的话，找测试或是产品经理了解）。</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;从今天开始我的目标就是读懂我们的公司项目的代码，在这里记录一下自己的阅读代码总结。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先是，先看一下&lt;strong&gt;线上作品&lt;/strong&gt;，明白各部分的功能需求。（不懂的话，找测试或是产品经理了解）。&lt;/li&gt;
+&lt;/ol&gt;
+
+    
+    </summary>
+    
+      <category term="软技能" scheme="http:/dannyzhaoo.github.io/categories/%E8%BD%AF%E6%8A%80%E8%83%BD/"/>
+    
+    
+      <category term="vue" scheme="http:/dannyzhaoo.github.io/tags/vue/"/>
+    
+  </entry>
   
   <entry>
     <title>git版本回退</title>
@@ -250,9 +364,9 @@
       <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
-    
       <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
+    
+      <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
     
   </entry>
   
@@ -875,145 +989,6 @@
     
     
       <category term="mockjs" scheme="http:/dannyzhaoo.github.io/tags/mockjs/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《岛上书店》</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/02/%E3%80%8A%E5%B2%9B%E4%B8%8A%E4%B9%A6%E5%BA%97%E3%80%8B/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/02/《岛上书店》/</id>
-    <published>2017-06-02T10:23:58.000Z</published>
-    <updated>2017-09-05T11:34:35.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。</p>
-<p>这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。</p>
-<p>无论何时，无论遇到哪种困难，人生的道路从来不是一条，而人的一生也不会因为什么别的东西而停止，总是要一步一步走下去，纵然可能眼前的一切会让人感到失望或者说是绝望。而且，人生总会迎来转机，人的存在也是因为<strong>爱</strong>，不要轻易就舍弃。也不要轻易就下断言，因为人生真的充满变化。</p>
-<p>《岛上书店》读完，不会因为结局的不好而让人难过，反而会让我们对生活变得更有希望，因为书中各位角色也各自有各自的好与坏，也有各种各样的际遇，最重要的是在人生的谷底，总会有一束阳光温暖！</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这本小说可以说是我今年读的第一本小说吧。读的时间大概一个星期，确实是一本很不错的小说。&lt;/p&gt;
-&lt;p&gt;这本书给我感觉，虽然有一点文化的差异，但是其中蕴含的深意，却是最真实的但是也很温暖。虽然“真实”和“温暖”在以前的印象中总是相反的代名词，但是这本书给我感觉就是这样。&lt;/p
-    
-    </summary>
-    
-      <category term="阅读" scheme="http:/dannyzhaoo.github.io/categories/%E9%98%85%E8%AF%BB/"/>
-    
-    
-      <category term="小说" scheme="http:/dannyzhaoo.github.io/tags/%E5%B0%8F%E8%AF%B4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>利用Timeout制作导航</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%88%A9%E7%94%A8Timeout%E5%88%B6%E4%BD%9C%E5%AF%BC%E8%88%AA/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/02/利用Timeout制作导航/</id>
-    <published>2017-06-02T10:20:41.000Z</published>
-    <updated>2017-09-05T11:40:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="html部分"><a href="#html部分" class="headerlink" title="html部分"></a>html部分</h2><ul>
-<li><h3 id="首先用Emmet写出html文件的结构"><a href="#首先用Emmet写出html文件的结构" class="headerlink" title="首先用Emmet写出html文件的结构"></a>首先用<strong>Emmet</strong>写出html文件的结构</h3><p>div#nav&gt;ul&gt;(li&gt;a[href=”javascript::”]+div.subnav&gt;em.arrow+p&gt;span&gt;(a[href=”javascript”])<em>8)</em>8</p>
-<p><strong>好处：</strong></p>
-<p>​ 用Emmet写html速度很快，而且结构一目了然，在sublime中的快捷键是<code>ctrl + alt + enter</code>。</p>
-</li>
-</ul>
-<ul>
-<li><h3 id="然后补充相应的导航内容"><a href="#然后补充相应的导航内容" class="headerlink" title="然后补充相应的导航内容"></a>然后补充相应的导航内容</h3></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;nav&quot;&gt;</div><div class="line">		&lt;ul&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;站长直接&lt;/a&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;行业资讯&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;</div><div class="line">						&lt;span&gt;</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;业界动态&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;收购融资&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;门户动态&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;搜索引擎&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;网络游戏&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;电子商务&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;广告传媒&lt;/a&gt;|</div><div class="line">							&lt;a href=&quot;javascript:;&quot;&gt;厂商开发&lt;/a&gt;</div><div class="line"></div><div class="line">						&lt;/span&gt;</div><div class="line">					&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;站长在线&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;站长报道&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;好站推荐&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;站长聚会&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;站长访谈&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;站长茶馆&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;网站排行&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;网站运营&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;建站经验&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;策划盈利&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;搜索优化&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;网站推广&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;免费资源&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;设计在线&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;酷站推荐&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;网页设计&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;WEB标准&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;视频处理&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;设计活动&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;网络编程&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Asp编程&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Php编程&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;.Net编程&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Xml编程&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Access&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Mssql&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Mysql&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;联盟资讯&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;联盟动态&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;联盟介绍&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;联盟点评&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;网赚技巧&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">			&lt;li&gt;</div><div class="line">				&lt;a href=&quot;javascript::&quot;&gt;服务器&lt;/a&gt;</div><div class="line">				&lt;div class=&quot;subnav&quot;&gt;</div><div class="line">					&lt;em class=&quot;arrow&quot;&gt;&lt;/em&gt;</div><div class="line">					&lt;p&gt;&lt;span&gt;</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Web服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Ftp服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Mail服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Dns服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Win服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;Linux服务器&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;安全防护&lt;/a&gt;|</div><div class="line">						&lt;a href=&quot;javascript:;&quot;&gt;虚拟主机&lt;/a&gt;</div><div class="line"></div><div class="line">					&lt;/span&gt;&lt;/p&gt;</div><div class="line">				&lt;/div&gt;</div><div class="line">			&lt;/li&gt;</div><div class="line">		&lt;/ul&gt;</div><div class="line">	&lt;/div&gt;</div></pre></td></tr></table></figure>
-<h2 id="css部分"><a href="#css部分" class="headerlink" title="css部分"></a>css部分</h2><p>我这是看着代码想的写css应该的每部分的作用，同时也有利于设计html的层次结构</p>
-<ul>
-<li><h3 id="首先设置一般的所有默认属性"><a href="#首先设置一般的所有默认属性" class="headerlink" title="首先设置一般的所有默认属性"></a>首先设置一般的所有默认属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">body,div,ul,li,p&#123;</div><div class="line">  margin:0;</div><div class="line">  padding:0;</div><div class="line">&#125;</div><div class="line">body&#123;</div><div class="line">  font:12px/1.5 Arial;</div><div class="line">&#125;</div><div class="line">ul&#123;</div><div class="line">  list-style-type:none;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><h3 id="这个导-航栏的背景主要用的是一个图片"><a href="#这个导-航栏的背景主要用的是一个图片" class="headerlink" title="这个导 航栏的背景主要用的是一个图片"></a>这个导 航栏的背景主要用的是一个图片</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#nav,#nav ul,#nav ul li,#nav ul li a:hover,#nav .subnav,#nav .subnav p,#nav .subnav p span,#nav .subnav .arrow&#123;</div><div class="line">background:url(http://fgm.cc/learn/lesson4/img/nav_bg.png) no-repeat;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><a href="http://fgm.cc/learn/lesson4/img/nav_bg.png" target="_blank" rel="external"><img src="http://fgm.cc/learn/lesson4/img/nav_bg.png" alt="导航栏的背景图片"></a></p>
-<ul>
-<li><h3 id="导航的css的用法解释"><a href="#导航的css的用法解释" class="headerlink" title="导航的css的用法解释"></a>导航的css的用法解释</h3></li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*最外层设置宽度，位置*/</span></div><div class="line"><span class="selector-id">#nav</span>&#123;</div><div class="line"><span class="attribute">position</span>:relative;<span class="comment">/*对二级标题的位置设置有用*/</span></div><div class="line"><span class="attribute">width</span>:<span class="number">910px</span>;</div><div class="line"><span class="attribute">background-position</span>:<span class="number">0</span> -<span class="number">36px</span>;<span class="comment">/*这是设置最左边的背景，属性值是相对于原来的位置偏移多少*/</span></div><div class="line"><span class="attribute">margin</span>:<span class="number">10px</span> auto;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*ul设置高度还有整体的导航栏的左右宽度,多余的部分都隐藏起来*/</span></div><div class="line"><span class="selector-id">#nav</span> <span class="selector-tag">ul</span>&#123;</div><div class="line"><span class="attribute">height</span>:<span class="number">36px</span>;</div><div class="line"><span class="attribute">line-height</span>:<span class="number">36px</span>;</div><div class="line"><span class="attribute">margin-left</span>:<span class="number">10px</span>;</div><div class="line"><span class="attribute">padding-right</span>:<span class="number">10px</span>;</div><div class="line"><span class="attribute">overflow</span>:hidden;</div><div class="line"><span class="attribute">background-position</span>:right -<span class="number">72px</span>;<span class="comment">/*设置最右边的背景*/</span></div><div class="line">&#125;</div><div class="line"><span class="comment">/*ul的li需要全部靠左浮动，浮动后元素就可以设置宽高*/</span></div><div class="line"><span class="selector-id">#nav</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span>&#123;</div><div class="line"><span class="attribute">float</span>:left;</div><div class="line"><span class="attribute">width</span>:<span class="number">110px</span>;</div><div class="line"><span class="attribute">margin-left</span>:-<span class="number">2px</span>;</div><div class="line"><span class="attribute">background-position</span>:<span class="number">0</span> -<span class="number">108px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*主要是设置字大小，颜色，居中显示，去掉&lt;a&gt;原来的修饰*/</span></div><div class="line"><span class="selector-id">#nav</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span>&#123;</div><div class="line"><span class="attribute">font-size</span>:<span class="number">14px</span>;</div><div class="line"><span class="attribute">color</span>:<span class="number">#fff</span>;</div><div class="line"><span class="attribute">width</span>:<span class="number">102px</span>;</div><div class="line"><span class="attribute">display</span>:block;</div><div class="line"><span class="attribute">text-align</span>:center;</div><div class="line"><span class="attribute">text-decoration</span>:none;</div><div class="line"><span class="attribute">margin</span>:<span class="number">0</span> <span class="number">2px</span> <span class="number">0</span> <span class="number">4px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*设置hover后的变化*/</span></div><div class="line"><span class="selector-id">#nav</span> <span class="selector-tag">ul</span> <span class="selector-tag">li</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line"><span class="attribute">font-weight</span>:<span class="number">700</span>;</div><div class="line"><span class="attribute">background-position</span>:-<span class="number">3px</span> -<span class="number">144px</span>;</div><div class="line">&#125;</div><div class="line"><span class="comment">/*下面是设置二级标题，类似于一级标题*/</span></div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span>&#123;</div><div class="line"><span class="attribute">display</span>:none;</div><div class="line"><span class="attribute">position</span>:absolute;</div><div class="line"><span class="attribute">top</span>:<span class="number">41px</span>;</div><div class="line"><span class="attribute">width</span>:auto<span class="meta">!important</span>;</div><div class="line"><span class="attribute">min-width</span>:<span class="number">110px</span>;</div><div class="line"><span class="attribute">height</span>:<span class="number">27px</span>;</div><div class="line"><span class="attribute">line-height</span>:<span class="number">27px</span>;</div><div class="line"><span class="attribute">white-space</span>:nowrap;<span class="comment">/*规定段落中的文本不进行换行*/</span></div><div class="line"><span class="attribute">background-position</span>:<span class="number">0</span> -<span class="number">180px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span> <span class="selector-tag">p</span>&#123;</div><div class="line"><span class="attribute">margin-left</span>:<span class="number">10px</span>;</div><div class="line"><span class="attribute">padding-right</span>:<span class="number">10px</span>;</div><div class="line"><span class="attribute">background-position</span>:right -<span class="number">234px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span> <span class="selector-tag">p</span> <span class="selector-tag">span</span>&#123;</div><div class="line"><span class="attribute">display</span>:block;</div><div class="line"><span class="attribute">color</span>:<span class="number">#235e99</span>;</div><div class="line"><span class="attribute">background-repeat</span>:repeat-x;<span class="comment">/*沿着x轴的方向重复*/</span></div><div class="line"><span class="attribute">background-position</span>:<span class="number">0</span> -<span class="number">207px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span> <span class="selector-tag">p</span> <span class="selector-tag">a</span>&#123;</div><div class="line"><span class="attribute">font-size</span>:<span class="number">12px</span>;</div><div class="line"><span class="attribute">display</span>:inline;<span class="comment">/*a标签会继承父元素的display*/</span></div><div class="line"><span class="attribute">color</span>:<span class="number">#235e99</span>;</div><div class="line"><span class="attribute">text-decoration</span>:none;</div><div class="line"><span class="attribute">margin</span>:<span class="number">0</span> <span class="number">5px</span>;</div><div class="line"><span class="attribute">padding</span>:<span class="number">0</span> <span class="number">2px</span>;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span> <span class="selector-tag">p</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>&#123;</div><div class="line"><span class="attribute">font-weight</span>:<span class="number">400</span>;</div><div class="line"><span class="attribute">background-image</span>:none;</div><div class="line"><span class="attribute">border-bottom</span>:<span class="number">2px</span> solid;</div><div class="line">&#125;</div><div class="line"><span class="selector-id">#nav</span> <span class="selector-class">.subnav</span> <span class="selector-class">.arrow</span>&#123;</div><div class="line"><span class="attribute">position</span>:absolute;</div><div class="line"><span class="attribute">top</span>:-<span class="number">4px</span>;</div><div class="line"><span class="attribute">display</span>:block;</div><div class="line"><span class="attribute">width</span>:<span class="number">11px</span>;</div><div class="line"><span class="attribute">height</span>:<span class="number">5px</span>;</div><div class="line"><span class="attribute">background-position</span>:<span class="number">0</span> -<span class="number">261px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h2 id="JavaScript部分"><a href="#JavaScript部分" class="headerlink" title="JavaScript部分"></a>JavaScript部分</h2><ul>
-<li><h3 id="首先是一个方法集合，容易得到元素"><a href="#首先是一个方法集合，容易得到元素" class="headerlink" title="首先是一个方法集合，容易得到元素"></a>首先是一个方法集合，容易得到元素</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var get=&#123;</div><div class="line">	//通过id得到元素</div><div class="line">	byId:function(id)&#123;</div><div class="line">		return document.getElementById(id);</div><div class="line">	&#125;,</div><div class="line">	//得到oParent里包含的所有带有sClass的元素</div><div class="line">	byClass:function(sClass, oParent)&#123;</div><div class="line">		var aClass = [];</div><div class="line">		var reClass = new RegExp(&quot;(^|)&quot;+sClass+&quot;(|$)&quot;);</div><div class="line">		//oParent子代中所有元素</div><div class="line">		var aElem = this.byTagName(&quot;*&quot;,oParent);</div><div class="line">		for(var i=0; i &lt; aElem.length; i++)&#123;</div><div class="line">			//包含sClass</div><div class="line">			reClass.test(aElem[i].className)&amp;&amp;aClass.push(aElem[i]);</div><div class="line">		&#125;</div><div class="line">		return aClass;</div><div class="line">	&#125;,</div><div class="line">	//在obj里得到标签是elem的元素组</div><div class="line">	byTagName:function(elem,obj)&#123;</div><div class="line">		return (obj||doocument).getElementsByTagName(elem)</div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-<li><h3 id="元素的动态变化"><a href="#元素的动态变化" class="headerlink" title="元素的动态变化"></a>元素的动态变化</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">window.onload=function()&#123;</div><div class="line">	var oNav = get.byId(&quot;nav&quot;);</div><div class="line">	var aLi = get.byTagName(&quot;li&quot;,oNav);</div><div class="line">	var aSubNav = get.byClass(&quot;subnav&quot;,oNav);</div><div class="line">	var oSubNav = oEm = timer = null;</div><div class="line">	var i = 0;</div><div class="line"></div><div class="line">	for(i=1;i&lt;aLi.length;i++)&#123;</div><div class="line">		aLi[i].onmouseover = function()&#123;</div><div class="line">			//隐藏所有的子菜单</div><div class="line">			for(i=0;i&lt;aSubNav.length;i++)&#123;</div><div class="line">				aSubNav[i].style.display = &quot;none&quot;;</div><div class="line">			&#125;</div><div class="line">			//获得该项下的子菜单</div><div class="line">			oSubNav = get.byClass(&quot;subnav&quot;,this)[0];</div><div class="line">			//获取该项下的指示箭头</div><div class="line">			oEm = get.byTagName(&quot;em&quot;,this)[0];</div><div class="line">			//显示该项下的菜单</div><div class="line">			oSubNav.style.display = &quot;block&quot;;</div><div class="line">			//判断显示区域，与nav的position属性设置为relative对应</div><div class="line">			oNav.offsetWidth - this.offsetLeft &gt; oSubNav.offsetWidth?oSubNav.style.left = this.offsetLeft + &quot;px&quot;:oSubNav.style.right=0;</div><div class="line">			//计算指标箭头显示位置</div><div class="line">			oEm.style.left = this.offsetLeft - oSubNav.offsetLeft + 50+ &quot;px&quot;;</div><div class="line">			clearTimeout(timer);</div><div class="line">			//阻止事件冒泡，后面有解释原因</div><div class="line">			oSubNav.onmouseover = function(event)&#123;</div><div class="line">				(event||window.event).cancelBubble = true;</div><div class="line">				clearTimeout(timer);</div><div class="line">			&#125;</div><div class="line">		&#125;;</div><div class="line">		aLi[i].onmouseout = function()&#123;</div><div class="line">			//300毫秒后display为none</div><div class="line">			timer = setTimeout(function()&#123;</div><div class="line">				oSubNav.style.display = &quot;none&quot;;</div><div class="line">			&#125;,300)</div><div class="line">		&#125;</div><div class="line"></div><div class="line">	&#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="为什么js要阻止事件冒泡"><a href="#为什么js要阻止事件冒泡" class="headerlink" title="为什么js要阻止事件冒泡"></a><strong>为什么js要阻止事件冒泡</strong></h4><p>某个DOM节点绑定了某事件监听器，本来是想当该DOM节点触发事件，才会执行回调函数。结果是该节点的某后代节点触发某事件，由于事件冒泡，该DOM节点事件也会触发，执行了回调函数，这样就违背了最初的本意了。<br>在这个例子中，二级元素的鼠标放上去，会触发一级标题的onmouseover函数，而这个就是调用就会形成无限循环，一直调用，所以此处阻止冒泡，就触发不了父元素的onmouseover事件了。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;html部分&quot;&gt;&lt;a href=&quot;#html部分&quot; class=&quot;headerlink&quot; title=&quot;html部分&quot;&gt;&lt;/a&gt;html部分&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;h3 id=&quot;首先用Emmet写出html文件的结构&quot;&gt;&lt;a href=&quot;#首先用Emmet写
-    
-    </summary>
-    
-      <category term="编程语言" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/"/>
-    
-    
-      <category term="JavaScript" scheme="http:/dannyzhaoo.github.io/tags/JavaScript/"/>
-    
-      <category term="HTML" scheme="http:/dannyzhaoo.github.io/tags/HTML/"/>
-    
-      <category term="CSS" scheme="http:/dannyzhaoo.github.io/tags/CSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hexo博客搭建</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/02/Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/02/Hexo博客搭建/</id>
-    <published>2017-06-02T10:11:17.000Z</published>
-    <updated>2017-09-05T11:44:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装nodejs"><a href="#安装nodejs" class="headerlink" title="安装nodejs"></a>安装nodejs</h2><p>去<a href="https://nodejs.org/en/download/" target="_blank" rel="external">nodejs官网</a>下载对应系统的安装包，按提示安装</p>
-<p>检视安装成功</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node -v</div></pre></td></tr></table></figure>
-<h2 id="利用Hexo搭建博客"><a href="#利用Hexo搭建博客" class="headerlink" title="利用Hexo搭建博客"></a>利用Hexo搭建博客</h2><h3 id="创建博客目录"><a href="#创建博客目录" class="headerlink" title="创建博客目录"></a>创建博客目录</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo init dannyzhaoo.github.io</div><div class="line">cd dannyzhaoo.github.io</div></pre></td></tr></table></figure>
-<h3 id="生成静态界面"><a href="#生成静态界面" class="headerlink" title="生成静态界面"></a>生成静态界面</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo clean  //如果是这个网页上有内容的最好就不要这步了</div><div class="line">hexo g</div></pre></td></tr></table></figure>
-<p>|g 即generate</p>
-<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s</div></pre></td></tr></table></figure>
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>这部分主要是指的是站点配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">title: 流光</div><div class="line">subtitle: 细数似水年华的美好</div><div class="line">description:</div><div class="line">author: DannyZhao</div><div class="line">language: zh-Hans   //如果没有设置，文章所有的字都不是简体中文</div><div class="line">timezone:</div><div class="line">url: http:/dannyzhaoo.github.io</div></pre></td></tr></table></figure>
-<h2 id="更换一个好看的主题"><a href="#更换一个好看的主题" class="headerlink" title="更换一个好看的主题"></a>更换一个好看的主题</h2><h3 id="下载一个主题"><a href="#下载一个主题" class="headerlink" title="下载一个主题"></a>下载一个主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
-<h3 id="网站的站点文件里设置"><a href="#网站的站点文件里设置" class="headerlink" title="网站的站点文件里设置"></a>网站的站点文件里设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next   //更换主题</div></pre></td></tr></table></figure>
-<h2 id="部署到GitHub上"><a href="#部署到GitHub上" class="headerlink" title="部署到GitHub上"></a>部署到GitHub上</h2><h3 id="安装hexo-deployer-git"><a href="#安装hexo-deployer-git" class="headerlink" title="安装hexo-deployer-git"></a>安装<a href="https://github.com/hexojs/hexo-deployer-git" target="_blank" rel="external">hexo-deployer-git</a></h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
-<h3 id="网站配置文件"><a href="#网站配置文件" class="headerlink" title="网站配置文件"></a>网站配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/DannyZhaoo/DannyZhaoo.github.io</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
-<h2 id="添加标签，分类"><a href="#添加标签，分类" class="headerlink" title="添加标签，分类"></a>添加标签，分类</h2><h2 id="网站的配置文件"><a href="#网站的配置文件" class="headerlink" title="网站的配置文件"></a>网站的配置文件</h2><p>一般下载下来就不用改了，都包含着</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">tag_dir: tags</div><div class="line">archive_dir: archives</div><div class="line">category_dir: categories</div><div class="line">code_dir: downloads/code</div></pre></td></tr></table></figure>
-<h3 id="主题的配置文件"><a href="#主题的配置文件" class="headerlink" title="主题的配置文件"></a>主题的配置文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">menu:</div><div class="line">  home: /</div><div class="line">  categories: /categories</div><div class="line">  archives: /archives</div><div class="line">  tags: /tags</div><div class="line">  about: /about</div></pre></td></tr></table></figure>
-<h3 id="新建tags和categories页面"><a href="#新建tags和categories页面" class="headerlink" title="新建tags和categories页面"></a>新建tags和categories页面</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo new page tags</div><div class="line">hexo new page categories</div></pre></td></tr></table></figure>
-<h3 id="修改source下的tags-index-md和categories-index-md"><a href="#修改source下的tags-index-md和categories-index-md" class="headerlink" title="修改source下的tags/index.md和categories/index.md"></a>修改source下的tags/index.md和categories/index.md</h3><p>注意冒号是<strong>英文</strong>的。</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: tags</div><div class="line">date: 2017-06-02 16:48:54</div><div class="line">type: "tags"</div><div class="line">comments: false</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">title: categories</div><div class="line">date: 2017-06-02 16:48:48</div><div class="line">type: &quot;categories&quot;</div><div class="line">comments: false</div></pre></td></tr></table></figure>
-<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><h3 id="设置RSS"><a href="#设置RSS" class="headerlink" title="设置RSS"></a>设置RSS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-generator-feed --save</div></pre></td></tr></table></figure>
-<h3 id="设置代码高亮"><a href="#设置代码高亮" class="headerlink" title="设置代码高亮"></a>设置代码高亮</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Code Highlight theme</div><div class="line"># Available value: normal | night | night eighties | night blue | night bright   可以从这几种中进行选择</div><div class="line"># https://github.com/chriskempson/tomorrow-theme</div><div class="line">highlight_theme: normal</div></pre></td></tr></table></figure>
-<h3 id="设置样式"><a href="#设置样式" class="headerlink" title="设置样式"></a>设置样式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># Schemes</div><div class="line">#scheme: Muse</div><div class="line">scheme: Mist</div><div class="line">#scheme: Pisces</div></pre></td></tr></table></figure>
-<h3 id="建立站点时间"><a href="#建立站点时间" class="headerlink" title="建立站点时间"></a>建立站点时间</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">since: 2017</div></pre></td></tr></table></figure>
-<h3 id="设置动画效果"><a href="#设置动画效果" class="headerlink" title="设置动画效果"></a>设置动画效果</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">use_motion: true  # 开启动画效果</div><div class="line">use_motion: false # 关闭动画效果</div></pre></td></tr></table></figure>
-<h3 id="设置背景动画"><a href="#设置背景动画" class="headerlink" title="设置背景动画"></a>设置背景动画</h3><p>有<code>canvas_nest</code>或<code>three_waves</code>只能同时开启一种背景动画效果。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"># canvas_nest</div><div class="line">canvas_nest: true //开启动画</div><div class="line">canvas_nest: false //关闭动画</div><div class="line"></div><div class="line"></div><div class="line"># three_waves</div><div class="line">three_waves: true //开启动画</div><div class="line">three_waves: false //关闭动画</div></pre></td></tr></table></figure>
-<h3 id="修改个人介绍部分的图片"><a href="#修改个人介绍部分的图片" class="headerlink" title="修改个人介绍部分的图片"></a>修改个人介绍部分的图片</h3><p>要在next的source中images里添加一个图片</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">avatar: /images/avatar.jpg</div></pre></td></tr></table></figure>
-<h3 id="设置阅读全文"><a href="#设置阅读全文" class="headerlink" title="设置阅读全文"></a>设置阅读全文</h3><p>在主题配置文件中添加</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">auto_excerpt:</div><div class="line">  enable: true</div><div class="line">  length: 220</div></pre></td></tr></table></figure>
-<h3 id="设置Favicon"><a href="#设置Favicon" class="headerlink" title="设置Favicon"></a>设置Favicon</h3><p>将图片放在站点的<code>source</code>下</p>
-<h3 id="新建文件的模板"><a href="#新建文件的模板" class="headerlink" title="新建文件的模板"></a>新建文件的模板</h3><p>这部分markdown的文件放在站点文件下的scaffolds里。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装nodejs&quot;&gt;&lt;a href=&quot;#安装nodejs&quot; class=&quot;headerlink&quot; title=&quot;安装nodejs&quot;&gt;&lt;/a&gt;安装nodejs&lt;/h2&gt;&lt;p&gt;去&lt;a href=&quot;https://nodejs.org/en/download/&quot; tar
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
     
   </entry>
   
