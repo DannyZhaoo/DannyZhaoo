@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-10-11T09:40:33.000Z</updated>
+  <updated>2017-10-12T02:24:08.000Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,99 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>避免使用全局变量</title>
+    <link href="http:/dannyzhaoo.github.io/2017/10/12/%E9%81%BF%E5%85%8D%E4%BD%BF%E7%94%A8%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/"/>
+    <id>http:/dannyzhaoo.github.io/2017/10/12/避免使用全局变量/</id>
+    <published>2017-10-12T02:03:21.000Z</published>
+    <updated>2017-10-12T02:24:08.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="全局变量带来的问题"><a href="#全局变量带来的问题" class="headerlink" title="全局变量带来的问题"></a>全局变量带来的问题</h1><h2 id="命名冲突"><a href="#命名冲突" class="headerlink" title="命名冲突"></a>命名冲突</h2><p>很可能无意中就是用来一个已经声明的变量。</p>
+<blockquote>
+<p>所有的变量都使用局部变量。</p>
+</blockquote>
+<h2 id="代码的脆弱性"><a href="#代码的脆弱性" class="headerlink" title="代码的脆弱性"></a>代码的脆弱性</h2><p>函数依赖于全局变量造成函数的不稳定性提高。</p>
+<blockquote>
+<p>将数据放在局部作用域内。</p>
+</blockquote>
+<h2 id="难以测试"><a href="#难以测试" class="headerlink" title="难以测试"></a>难以测试</h2><p>必须创建完整的全局变量才能进行测试。</p>
+<h2 id="意外的全局变量"><a href="#意外的全局变量" class="headerlink" title="意外的全局变量"></a>意外的全局变量</h2><blockquote>
+<p>使用JSLint和JSHint。<br>启动严格模式。</p>
+</blockquote>
+<h1 id="单全局变量方式"><a href="#单全局变量方式" class="headerlink" title="单全局变量方式"></a>单全局变量方式</h1><p>全局只创建一个全局变量，所有功能都挂在到这个全局对象上。</p>
+<h2 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h2><p>即是全局变量的功能性分组。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>通用的功能片段，所有的这些代码都存放于一个表示执行一个任务或发布一个接口的单函数。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;全局变量带来的问题&quot;&gt;&lt;a href=&quot;#全局变量带来的问题&quot; class=&quot;headerlink&quot; title=&quot;全局变量带来的问题&quot;&gt;&lt;/a&gt;全局变量带来的问题&lt;/h1&gt;&lt;h2 id=&quot;命名冲突&quot;&gt;&lt;a href=&quot;#命名冲突&quot; class=&quot;headerli
+    
+    </summary>
+    
+      <category term="编程知识储备" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87/"/>
+    
+    
+      <category term="JavaScript编程模式" scheme="http:/dannyzhaoo.github.io/tags/JavaScript%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>UI层的松耦合</title>
+    <link href="http:/dannyzhaoo.github.io/2017/10/12/UI%E5%B1%82%E7%9A%84%E6%9D%BE%E8%80%A6%E5%90%88/"/>
+    <id>http:/dannyzhaoo.github.io/2017/10/12/UI层的松耦合/</id>
+    <published>2017-10-12T01:51:04.000Z</published>
+    <updated>2017-10-12T02:07:31.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>目的：修改一个组件而不需要更改其他组件。</p>
+<p>减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。</p>
+<ul>
+<li>将JavaScript从CSS中抽离</li>
+</ul>
+<blockquote>
+<p>避免在CSS中使用JavaScript代码。</p>
+</blockquote>
+<ul>
+<li>将CSS从JavaScript中抽离。</li>
+</ul>
+<blockquote>
+<p>操作CSS的className来替代直接修改与元素样式。</p>
+</blockquote>
+<ul>
+<li>将JavaScript从HTML中抽离。</li>
+</ul>
+<blockquote>
+<p>使用JavaScript来添加事件，而不是用在HTML中直接给on属性挂载事件。</p>
+<p>将所有的JavaScript代码都放入外置文件中。</p>
+</blockquote>
+<ul>
+<li>将HTML从JavaScript中抽离。</li>
+</ul>
+<blockquote>
+<p>定义模板，用占位符或是在HTML中使用变量。类似于vue的data。</p>
+</blockquote>
+<p><em>摘自《编写可维护的JavaScript》</em></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;目的：修改一个组件而不需要更改其他组件。&lt;/p&gt;
+&lt;p&gt;减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将JavaScript从CSS中抽离&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;避免在CSS中使用JavaScript代码。
+    
+    </summary>
+    
+      <category term="编程知识储备" scheme="http:/dannyzhaoo.github.io/categories/%E7%BC%96%E7%A8%8B%E7%9F%A5%E8%AF%86%E5%82%A8%E5%A4%87/"/>
+    
+    
+      <category term="JavaScript编程模式" scheme="http:/dannyzhaoo.github.io/tags/JavaScript%E7%BC%96%E7%A8%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>javaScript编码</title>
@@ -364,9 +457,9 @@
       <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
-    
       <category term="hexo" scheme="http:/dannyzhaoo.github.io/tags/hexo/"/>
+    
+      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
     
   </entry>
   
@@ -930,65 +1023,6 @@
       <category term="mdict" scheme="http:/dannyzhaoo.github.io/tags/mdict/"/>
     
       <category term="English" scheme="http:/dannyzhaoo.github.io/tags/English/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>配置客户端git</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/02/%E9%85%8D%E7%BD%AE%E5%AE%A2%E6%88%B7%E7%AB%AFgit/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/02/配置客户端git/</id>
-    <published>2017-06-02T10:30:21.000Z</published>
-    <updated>2017-09-05T11:40:17.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>配置客户端git，让git可以push和pull</p>
-<h2 id="设置名字和邮箱地址"><a href="#设置名字和邮箱地址" class="headerlink" title="设置名字和邮箱地址"></a>设置名字和邮箱地址</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> git config --global user.name "John Doe"</div><div class="line"><span class="meta">$</span> git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
-<h2 id="生成一个新的ssh秘钥"><a href="#生成一个新的ssh秘钥" class="headerlink" title="生成一个新的ssh秘钥"></a>生成一个新的ssh秘钥</h2><p>打开 Git Bash，输入如下命令，然后连续按三个回车即可：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa -C &quot;your_email@example.com&quot;</div></pre></td></tr></table></figure>
-<h2 id="将生成的公钥复制到GitHub"><a href="#将生成的公钥复制到GitHub" class="headerlink" title="将生成的公钥复制到GitHub"></a>将生成的公钥复制到GitHub</h2><h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh -T git@github.com</div></pre></td></tr></table></figure>
-<p>输入yes后回车，如果提示中的用户名是你的，说明设置成功。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;配置客户端git，让git可以push和pull&lt;/p&gt;
-&lt;h2 id=&quot;设置名字和邮箱地址&quot;&gt;&lt;a href=&quot;#设置名字和邮箱地址&quot; class=&quot;headerlink&quot; title=&quot;设置名字和邮箱地址&quot;&gt;&lt;/a&gt;设置名字和邮箱地址&lt;/h2&gt;&lt;figure class
-    
-    </summary>
-    
-      <category term="开发工具" scheme="http:/dannyzhaoo.github.io/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="git" scheme="http:/dannyzhaoo.github.io/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装mockjs</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/02/%E5%AE%89%E8%A3%85mockjs/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/02/安装mockjs/</id>
-    <published>2017-06-02T10:25:39.000Z</published>
-    <updated>2017-09-05T11:36:37.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>首先配置安装</p>
-<h2 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#安装mock，这个只能在这个文件中使用</div><div class="line">npm install mockjs</div></pre></td></tr></table></figure>
-<p>​ 然后在这个文件夹中新建一个mock.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">// 使用 Mock</div><div class="line">var Mock = require(&apos;mockjs&apos;)</div><div class="line">var data = Mock.mock(&#123;</div><div class="line">    // 属性 list 的值是一个数组，其中含有 1 到 10 个元素</div><div class="line">    &apos;list|1-10&apos;: [&#123;</div><div class="line">        // 属性 id 是一个自增数，起始值为 1，每次增 1</div><div class="line">        &apos;id|+1&apos;: 1</div><div class="line">    &#125;]</div><div class="line">&#125;)</div><div class="line">// 输出结果</div><div class="line">console.log(JSON.stringify(data, null, 4))</div></pre></td></tr></table></figure>
-<p>​ 在shell中运行，会看到相应的输出结果。</p>
-<h2 id="Bower"><a href="#Bower" class="headerlink" title="Bower"></a>Bower</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#这里是需要依赖bower，所以在哪里需要，就在哪里执行</div><div class="line">npm install -g bower #-g 全局</div><div class="line">bower install --save mockjs</div></pre></td></tr></table></figure>
-<p>​ 然后调用就直接可以用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script type=&quot;text/javascript&quot; src=&quot;./bower_components/mockjs/dist/mock.js&quot;&gt;&lt;/scrip</div></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;首先配置安装&lt;/p&gt;
-&lt;h2 id=&quot;Node&quot;&gt;&lt;a href=&quot;#Node&quot; class=&quot;headerlink&quot; title=&quot;Node&quot;&gt;&lt;/a&gt;Node&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td clas
-    
-    </summary>
-    
-      <category term="前端框架/库" scheme="http:/dannyzhaoo.github.io/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6-%E5%BA%93/"/>
-    
-    
-      <category term="mockjs" scheme="http:/dannyzhaoo.github.io/tags/mockjs/"/>
     
   </entry>
   

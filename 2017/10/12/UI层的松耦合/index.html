@@ -79,7 +79,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="JavaScript编程模式," />
 
 
 
@@ -95,13 +95,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="流光">
-<meta property="og:url" content="http:/dannyzhaoo.github.io/categories/前端标准-规范/index.html">
+<meta name="description" content="目的：修改一个组件而不需要更改其他组件。 减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。  将JavaScript从CSS中抽离   避免在CSS中使用JavaScript代码。   将CSS从JavaScript中抽离。   操作CSS的className来替代直接修改与元素样式。   将JavaScript从HTML中抽离。   使用JavaScript来添加事件，而不是用在HTML中">
+<meta name="keywords" content="JavaScript编程模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UI层的松耦合">
+<meta property="og:url" content="http:/dannyzhaoo.github.io/2017/10/12/UI层的松耦合/index.html">
 <meta property="og:site_name" content="流光">
+<meta property="og:description" content="目的：修改一个组件而不需要更改其他组件。 减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。  将JavaScript从CSS中抽离   避免在CSS中使用JavaScript代码。   将CSS从JavaScript中抽离。   操作CSS的className来替代直接修改与元素样式。   将JavaScript从HTML中抽离。   使用JavaScript来添加事件，而不是用在HTML中">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-12T02:07:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="流光">
+<meta name="twitter:title" content="UI层的松耦合">
+<meta name="twitter:description" content="目的：修改一个组件而不需要更改其他组件。 减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。  将JavaScript从CSS中抽离   避免在CSS中使用JavaScript代码。   将CSS从JavaScript中抽离。   操作CSS的className来替代直接修改与元素样式。   将JavaScript从HTML中抽离。   使用JavaScript来添加事件，而不是用在HTML中">
 
 
 
@@ -131,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http:/dannyzhaoo.github.io/categories/前端标准-规范/"/>
+  <link rel="canonical" href="http:/dannyzhaoo.github.io/2017/10/12/UI层的松耦合/"/>
 
 
 
 
 
-  <title>分类: 前端标准/规范 | 流光</title>
+  <title>UI层的松耦合 | 流光</title>
   
 
 
@@ -156,7 +161,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,55 +265,200 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>前端标准/规范<small>分类</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http:/dannyzhaoo.github.io/2017/10/12/UI层的松耦合/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="DannyZhao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="流光">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2017/09/05/JavaScript规范/" itemprop="url">
-              
-                <span itemprop="name">JavaScript规范</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">UI层的松耦合</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-05T09:21:59+08:00"
-              content="2017-09-05" >
-          09-05
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-12T09:51:04+08:00">
+                2017-10-12
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程知识储备/" itemprop="url" rel="index">
+                    <span itemprop="name">编程知识储备</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>目的：修改一个组件而不需要更改其他组件。</p>
+<p>减少跟踪文本和结构性问题的复杂度，提高代码的可维护性。</p>
+<ul>
+<li>将JavaScript从CSS中抽离</li>
+</ul>
+<blockquote>
+<p>避免在CSS中使用JavaScript代码。</p>
+</blockquote>
+<ul>
+<li>将CSS从JavaScript中抽离。</li>
+</ul>
+<blockquote>
+<p>操作CSS的className来替代直接修改与元素样式。</p>
+</blockquote>
+<ul>
+<li>将JavaScript从HTML中抽离。</li>
+</ul>
+<blockquote>
+<p>使用JavaScript来添加事件，而不是用在HTML中直接给on属性挂载事件。</p>
+<p>将所有的JavaScript代码都放入外置文件中。</p>
+</blockquote>
+<ul>
+<li>将HTML从JavaScript中抽离。</li>
+</ul>
+<blockquote>
+<p>定义模板，用占位符或是在HTML中使用变量。类似于vue的data。</p>
+</blockquote>
+<p><em>摘自《编写可维护的JavaScript》</em></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript编程模式/" rel="tag"># JavaScript编程模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/11/javaScript编码/" rel="next" title="javaScript编码">
+                <i class="fa fa-chevron-left"></i> javaScript编码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/12/避免使用全局变量/" rel="prev" title="避免使用全局变量">
+                避免使用全局变量 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -316,6 +466,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -529,6 +683,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
 
   
 
