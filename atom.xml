@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2017-12-12T06:16:23.527Z</updated>
+  <updated>2018-01-29T08:46:57.056Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -14,6 +14,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>页面内嵌入二维码</title>
+    <link href="http:/dannyzhaoo.github.io/2018/01/29/%E9%A1%B5%E9%9D%A2%E5%86%85%E5%B5%8C%E5%85%A5%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
+    <id>http:/dannyzhaoo.github.io/2018/01/29/页面内嵌入二维码/</id>
+    <published>2018-01-29T08:45:32.000Z</published>
+    <updated>2018-01-29T08:46:57.056Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>在页面中引入</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>需要获取appid，并且redirect_uri的这个跳转后的参数需要经过url编码过的。而且这个url的域名必须是在公众号后台配过的。</p>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>在页面中componentDidMount()中添加实例化方法。还有需要注意的是在此之前redirect_uri必须在scope这个参数之前。也就是说，必须要注意参数的顺序。否则会出现<strong>Scope错误</strong>。</p>
+<p>例子如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> teacher = <span class="keyword">new</span> WxLogin(&#123;</div><div class="line">           id: <span class="string">'teacher-qrcode'</span>, </div><div class="line">           appid: <span class="string">''</span>, </div><div class="line">           redirect_uri: <span class="string">'https%3a%2f%2fbaidu.com'</span>,</div><div class="line">           scope: <span class="string">'snsapi_login'</span></div><div class="line">       &#125;);</div></pre></td></tr></table></figure>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>在页面中需要给二维码添加样式。那个样式文件需要放在拥有https的服务器上，而且这个内嵌的二维码实际上是个iframe，里面包含的实际上是个完整网页代码。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;第一步&quot;&gt;&lt;a href=&quot;#第一步&quot; class=&quot;headerlink&quot; title=&quot;第一步&quot;&gt;&lt;/a&gt;第一步&lt;/h2&gt;&lt;p&gt;在页面中引入&lt;/p&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
+    
+    </summary>
+    
+      <category term="-技术日记" scheme="http:/dannyzhaoo.github.io/categories/%E6%8A%80%E6%9C%AF%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="-wechat" scheme="http:/dannyzhaoo.github.io/tags/wechat/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS布局总结</title>
@@ -858,97 +888,6 @@
     
     
       <category term="NodeJS" scheme="http:/dannyzhaoo.github.io/tags/NodeJS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Latex入门笔记</title>
-    <link href="http:/dannyzhaoo.github.io/2017/06/06/Latex%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/"/>
-    <id>http:/dannyzhaoo.github.io/2017/06/06/Latex入门笔记/</id>
-    <published>2017-06-06T12:20:23.000Z</published>
-    <updated>2017-09-05T11:43:07.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。</p>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>在ctex.org下载ctex套装(203Mb或1.3Gb)（含MikTeX及WinEdt），等着下载好了之后，就一步一步安装。</p>
-<h2 id="写第一个文档"><a href="#写第一个文档" class="headerlink" title="写第一个文档"></a>写第一个文档</h2><p>主要是使用界面较为简单的<strong>TeXworks</strong>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">hello,world</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>此处的第一行 <code>\documentclass{article}</code> 中包含了一个控制序列（或称命令/标记）。所谓控制序列，是以反斜杠<code>\</code>开头，以第一个<strong>空格或非字母</strong> 的字符结束的一串文字，他们并不被输出，但是他们会影响输出文档的效果。这里的控制序列是 <code>documentclass</code>，它后面紧跟着的 <code>{article}</code> 代表这个控制序列有一个必要的参数，该参数的值为 <code>article</code>。这个控制序列的作用，是调用名为 “article” 的文档类。</p>
-<p>尝试输出<strong>中文</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">\documentclass[UTF8]&#123;ctexart&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">你好，世界！</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>可以如愿输出中文，ps:用latex输出中文真是不容易！！！</p>
-<p>相较于之前，这份代码有些细微的差别:</p>
-<blockquote>
-<ol>
-<li>文档从<code>article</code>变为<code>ctextart</code>;</li>
-<li>增加了文档累选项<code>UTF8</code>。</li>
-</ol>
-</blockquote>
-<h2 id="作者、标题、日期"><a href="#作者、标题、日期" class="headerlink" title="作者、标题、日期"></a>作者、标题、日期</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">\documentclass[UTF8]&#123;ctexart&#125;</div><div class="line">\title&#123;你好，world!&#125;</div><div class="line">\author&#123;Liam&#125;</div><div class="line">\date&#123;\today&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">\maketitle</div><div class="line">你好，world!</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>在 <code>document</code> 环境中，除了原本的<code>你好，world!</code>，还多了一个控制序列 <code>maketitle</code>。这个控制序列能将在导言区中定义的标题、作者、日期 按照预定的格式展现出来。</p>
-<h2 id="章节和段落"><a href="#章节和段落" class="headerlink" title="章节和段落"></a>章节和段落</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">\documentclass[UTF8]&#123;ctexart&#125;</div><div class="line">\title&#123;你好，world!&#125;</div><div class="line">\author&#123;Liam&#125;</div><div class="line">\date&#123;\today&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">\maketitle</div><div class="line">\section&#123;你好中国&#125;</div><div class="line">中国在East Asia.</div><div class="line">\subsection&#123;Hello Beijing&#125;</div><div class="line">北京是capital of China.</div><div class="line">\subsubsection&#123;Hello Dongcheng District&#125;</div><div class="line">\paragraph&#123;Tian&apos;anmen Square&#125;</div><div class="line">is in the center of Beijing</div><div class="line">\subparagraph&#123;Chairman Mao&#125;</div><div class="line">is in the center of 天安门广场。</div><div class="line">\subsection&#123;Hello 山东&#125;</div><div class="line">\paragraph&#123;山东大学&#125; is one of the best university in 山东。</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>在文档类 <code>article</code>/<code>ctexart</code> 中，定义了五个控制序列来调整行文组织结构。他们分别是</p>
-<ul>
-<li><code>\section{·}</code></li>
-<li><code>\subsection{·}</code></li>
-<li><code>\subsubsection{·}</code></li>
-<li><code>\paragraph{·}</code></li>
-<li><code>\subparagraph{·}</code></li>
-</ul>
-<blockquote>
-<p>在<code>report</code>/<code>ctexrep</code>中，还有<code>\chapter{·}</code>；在文档类<code>book</code>/<code>ctexbook</code>中，还定义了<code>\part{·}</code>。</p>
-</blockquote>
-<h2 id="插入目录"><a href="#插入目录" class="headerlink" title="插入目录"></a>插入目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">\documentclass[UTF8]&#123;ctexart&#125;</div><div class="line">\title&#123;你好，world!&#125;</div><div class="line">\author&#123;Liam&#125;</div><div class="line">\date&#123;\today&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">\maketitle</div><div class="line">\tableofcontents  %插入的位置</div><div class="line">\section&#123;你好中国&#125;</div><div class="line">中国在East Asia.</div><div class="line">\subsection&#123;Hello Beijing&#125;</div><div class="line">北京是capital of China.</div><div class="line">\subsubsection&#123;Hello Dongcheng District&#125;</div><div class="line">\paragraph&#123;Tian&apos;anmen Square&#125;</div><div class="line">is in the center of Beijing</div><div class="line">\subparagraph&#123;Chairman Mao&#125;</div><div class="line">is in the center of 天安门广场。</div><div class="line">\subsection&#123;Hello 山东&#125;</div><div class="line">\paragraph&#123;山东大学&#125; is one of the best university in 山东。</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>如果交换 <code>\maketitle</code> 和 <code>\tableofcontents</code> 的顺序，那么下面所有的内容全部就都变成了目录的内容了。而不是自动生成。</p>
-<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><p>在 LaTeX 中插入图片，有很多种方式。最好用的应当属利用 <code>graphicx</code> 宏包提供的 <code>\includegraphics</code> 命令。比如你在你的 TeX 源文件同目录下，有名为 <code>a.jpg</code> 的图片，你可以用这样的方式将它插入到输出文档中：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">\documentclass&#123;article&#125;</div><div class="line">\usepackage&#123;graphicx&#125;</div><div class="line">\begin&#123;document&#125;</div><div class="line">\includegraphics&#123;a.jpg&#125;</div><div class="line">\end&#123;document&#125;</div></pre></td></tr></table></figure>
-<p>图片可能很大，超过了输出文件的纸张大小，或者干脆就是你自己觉得输出的效果不爽。这时候你可以用 <code>\includegraphics</code> 控制序列的可选参数来控制。比如</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\includegraphics[width = .8\textwidth]&#123;a.jpg&#125;</div></pre></td></tr></table></figure>
-<p>这样图片的宽度会被缩放至页面宽度的百分之八十，图片的总高度会按比例缩放。</p>
-<blockquote>
-<p><code>\includegraphics</code> 控制序列还有若干其他的可选参数可供使用，一般并用不到。感兴趣的话，可以去查看<a href="http://texdoc.net/texmf-dist/doc/latex/graphics/graphicx.pdf" target="_blank" rel="external">该宏包的文档</a>。</p>
-</blockquote>
-<p>插图和表格通常需要占据大块空间，所以在文字处理软件中我们经常需要调整他们的位置。<code>figure</code> 和 <code>table</code> 环境可以自动完成这样的任务；这种自动调整位置的环境称作浮动体(float)。我们以 <code>figure</code> 为例。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">\begin&#123;figure&#125;[htbp]</div><div class="line">\centering</div><div class="line">\includegraphics&#123;a.jpg&#125;</div><div class="line">\caption&#123;有图有真相&#125;</div><div class="line">\label&#123;fig:myphoto&#125;</div><div class="line">\end&#123;figure&#125;</div></pre></td></tr></table></figure>
-<p>“htbp” 选项用来指定插图的理想位置，这几个字母分别代表here, top, bottom, float page，也就是就这里、页顶、页尾、浮动页(专门放浮动体的单独页面) 。<code>\centering</code> 用来使插图居中；<code>\caption</code> 命令设置插图标题，LaTeX 会自动给浮动体的标题加上编号。注意 <code>\label</code> 应该放在标题命令之后。</p>
-<h2 id="版面设置"><a href="#版面设置" class="headerlink" title="版面设置"></a>版面设置</h2><h3 id="页边距"><a href="#页边距" class="headerlink" title="页边距"></a>页边距</h3><p>设置页边距，推荐使用 <code>geometry</code> 宏包。可以在<a href="http://texdoc.net/texmf-dist/doc/latex/geometry/geometry.pdf" target="_blank" rel="external">这里</a>查看它的说明文档。</p>
-<p>比如我希望，将纸张的长度设置为 20cm、宽度设置为 15cm、左边距 1cm、右边距 2cm、上边距 3cm、下边距 4cm，可以在导言区加上这样几行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">\usepackage&#123;geometry&#125;</div><div class="line">\geometry&#123;papersize=&#123;20cm,15cm&#125;&#125;</div><div class="line">\geometry&#123;left=1cm,right=2cm,top=3cm,bottom=4cm&#125;</div></pre></td></tr></table></figure>
-<h3 id="页眉页脚"><a href="#页眉页脚" class="headerlink" title="页眉页脚"></a>页眉页脚</h3><p>设置页眉页脚，推荐使用 <code>fancyhdr</code> 宏包。可以在<a href="http://texdoc.net/texmf-dist/doc/latex/fancyhdr/fancyhdr.pdf" target="_blank" rel="external">这里</a>查看它的说明文档。</p>
-<p>比如我希望，在页眉左边写上我的名字，中间写上今天的日期，右边写上我的电话；页脚的正中写上页码；页眉和正文之间有一道宽为 0.4pt 的横线分割，可以在导言区加上如下几行：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">\usepackage&#123;fancyhdr&#125;</div><div class="line">\pagestyle&#123;fancy&#125;</div><div class="line">\lhead&#123;\author&#125;</div><div class="line">\chead&#123;\date&#125;</div><div class="line">\rhead&#123;152xxxxxxxx&#125;</div><div class="line">\lfoot&#123;&#125;</div><div class="line">\cfoot&#123;\thepage&#125;</div><div class="line">\rfoot&#123;&#125;</div><div class="line">\renewcommand&#123;\headrulewidth&#125;&#123;0.4pt&#125;</div><div class="line">\renewcommand&#123;\headwidth&#125;&#123;\textwidth&#125;</div><div class="line">\renewcommand&#123;\footrulewidth&#125;&#123;0pt&#125;</div></pre></td></tr></table></figure>
-<h3 id="首行缩进"><a href="#首行缩进" class="headerlink" title="首行缩进"></a>首行缩进</h3><p><code>CTeX</code> 宏集已经处理好了首行缩进的问题（自然段前空两格汉字宽度）。</p>
-<blockquote>
-<p>不使用 <code>CTeX</code> 宏集（使用 <code>xeCJK</code> 宏包）的话，请遵照以下提示操作。</p>
-<p>中国人写文章，习惯每一段的段首都空出两个中文汉字的长度。美国人没有这个习惯，他们每一小节的段首都顶格。为了解决这个问题，我们可以在导言区调用 <code>\usepackage{indentfirst}</code>.</p>
-<p>就算是这样，首行缩进的长度，仍然不符合中国人的习惯。我们可以在导言区添加这样的控制序列 <code>\setlength{\parindent}{\ccwd}</code> 来调整首行缩进的大小。这里的 <code>\ccwd</code> 是当前字号下一个中文汉字的宽度。</p>
-</blockquote>
-<h3 id="行间距"><a href="#行间距" class="headerlink" title="行间距"></a>行间距</h3><p>我们可以通过 <code>setspace</code>宏包提供的命令来调整行间距。比如在导言区添加如下内容，可以将行距设置为字号的 1.5 倍：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">\usepackage&#123;setspace&#125;</div><div class="line">\onehalfspacing</div></pre></td></tr></table></figure>
-<p>具体可以查看该宏包的<a href="http://texdoc.net/texmf-dist/doc/latex/setspace/README" target="_blank" rel="external">文档</a>。</p>
-<blockquote>
-<p>请注意用词的差别：</p>
-<ul>
-<li>行距是字号的 1.5 倍；</li>
-<li>1.5 倍行距。</li>
-</ul>
-<p>事实上，这不是设置 1.5 倍行距的正确方法，请参考：<a href="http://liam0205.me/2013/10/17/LaTeX-Linespace/" target="_blank" rel="external">http://liam0205.me/2013/10/17/LaTeX-Linespace/</a></p>
-</blockquote>
-<h3 id="段间距"><a href="#段间距" class="headerlink" title="段间距"></a>段间距</h3><p>我们可以通过修改长度 <code>\parskip</code> 的值来调整段间距。例如在导言区添加以下内容</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">\addtolength&#123;\parskip&#125;&#123;.4em&#125;</div></pre></td></tr></table></figure>
-<p>则可以在原有的基础上，增加段间距 0.4em。如果需要减小段间距，只需将该数值改为负值即可。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;因为Latex的排版一直为人称道，而近期我们需要写一个指导手册，所以就学习用一下Latex。&lt;/p&gt;
-&lt;h2 id=&quot;下载安装&quot;&gt;&lt;a href=&quot;#下载安装&quot; class=&quot;headerlink&quot; title=&quot;下载安装&quot;&gt;&lt;/a&gt;下载安装&lt;/h2&gt;&lt;p&gt;在ctex.or
-    
-    </summary>
-    
-      <category term="软技能" scheme="http:/dannyzhaoo.github.io/categories/%E8%BD%AF%E6%8A%80%E8%83%BD/"/>
-    
-    
-      <category term="Latex" scheme="http:/dannyzhaoo.github.io/tags/Latex/"/>
     
   </entry>
   
