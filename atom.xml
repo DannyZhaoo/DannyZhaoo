@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http:/dannyzhaoo.github.io/"/>
-  <updated>2018-01-29T08:46:57.056Z</updated>
+  <updated>2018-01-29T09:17:38.652Z</updated>
   <id>http:/dannyzhaoo.github.io/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http:/dannyzhaoo.github.io/2018/01/29/%E9%A1%B5%E9%9D%A2%E5%86%85%E5%B5%8C%E5%85%A5%E4%BA%8C%E7%BB%B4%E7%A0%81/"/>
     <id>http:/dannyzhaoo.github.io/2018/01/29/页面内嵌入二维码/</id>
     <published>2018-01-29T08:45:32.000Z</published>
-    <updated>2018-01-29T08:46:57.056Z</updated>
+    <updated>2018-01-29T09:17:38.652Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><p>在页面中引入</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
@@ -38,10 +38,10 @@
     
     </summary>
     
-      <category term="-技术日记" scheme="http:/dannyzhaoo.github.io/categories/%E6%8A%80%E6%9C%AF%E6%97%A5%E8%AE%B0/"/>
+      <category term="技术日记" scheme="http:/dannyzhaoo.github.io/categories/%E6%8A%80%E6%9C%AF%E6%97%A5%E8%AE%B0/"/>
     
     
-      <category term="-wechat" scheme="http:/dannyzhaoo.github.io/tags/wechat/"/>
+      <category term="wechat" scheme="http:/dannyzhaoo.github.io/tags/wechat/"/>
     
   </entry>
   
